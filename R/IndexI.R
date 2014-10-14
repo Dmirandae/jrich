@@ -8,10 +8,10 @@
 #' Returns a vector with weights.
 #'
 #' @examples
-#' #indexi <- IndexI(tree)
-#' #newTree <- tree
-#' #newTree$Labels  <- indexi
-#' #plot(newTree)
+#'  indexi <- IndexI(tree)
+#'  newTree <- tree
+#'  newTree$Labels  <- indexi
+#'  plot(newTree)
 
 
 IndexI <-function (tree=tree) {

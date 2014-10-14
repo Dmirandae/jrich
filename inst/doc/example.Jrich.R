@@ -19,11 +19,13 @@
 # 
 #   if (dev.cur()!=1){dev.off()}
 # 
-# ## Get the latest version of the library from GitHub
+# ## Get the latest version of the library, from GitHub
 # 
-# library("devtools")
 # 
-# install_github("Dmirandae/jrich")
+library("devtools")
+# 
+# 
+install_github("Dmirandae/jrich")
 
 
 ## Load library
@@ -114,8 +116,11 @@ setwd("~/Dropbox/papers/Jrich-R/jrich/test/")
 ## 2. The index that explains the most is
 
   best.Index <-   which.max(apply(correlations,2,sum))
+
+  best.Index
   
-  qplot(initial.Values$area,initial.Values[,names(best.Index)], xlab = "Areas", ylab =names(best.Index), main = "Index value")
+  qplot(initial.Values$area,initial.Values[,names(best.Index)], xlab = "Areas", 
+        ylab =paste(names(best.Index)," values"), main = paste(names(best.Index)," Index"))
 
 
 
@@ -133,8 +138,9 @@ setwd("~/Dropbox/papers/Jrich-R/jrich/test/")
 ## previuous function, and evaluating the number of times we recover 1/2/3 position in the ranking.
 ## note that Jack.Index recovers the index values while Jack.Indices recovers the ranking comparison
 
-  Jack.Indices(tree=tree.Puranius, distrib = distrib.Puranius,jtopol = 0.5, replicates = 100)
+  jack.Puranius.jtip05.100replicates <- Jack.Indices(tree=tree.Puranius, distrib = distrib.Puranius,jtopol = 0.5, replicates = 100)
 
+  jack.Puranius.jtip05.100replicates
 
 
 ################################      Multiple Taxa       #################################################################
