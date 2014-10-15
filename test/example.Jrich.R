@@ -232,7 +232,7 @@ vector <-   which.max(apply(correlations,2,sum))
 jack.Ranking.100 <- list()
 
   for (i in 1:100){
-    print(i)
+    print(paste("replicate #",i))
     jack.Ranking.100[[i]] <-  as.data.frame(Rank.Indices(Multi.Index.Calc(Multitaxon1,jtip = 0.5,jtopol = 0.5)))
   }
 
