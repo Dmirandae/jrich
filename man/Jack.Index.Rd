@@ -3,7 +3,7 @@
 \alias{Jack.Index}
 \title{Jack-knife indices in a single topology}
 \usage{
-Jack.Index(tree = tree, distrib = distrib, jtip = 0)
+Jack.Index(tree = tree, distrib = distrib, jtip = 0, verbose = TRUE)
 }
 \description{
 The function jack-knifes the terminals and calculates the indices.

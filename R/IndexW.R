@@ -15,30 +15,49 @@
 
 
 IndexW <- function (tree=tree) {
+
+	## masked functions
+
+#'
+#' Ancestor of a node
+#'
+#' Input: a tree and a node
+#' Returns the ancestor of that node
+#'
+
+	Ancestor <- function (tree=tree,node=node) {
   
-  matriz  <-  matrix(0,nrow=1,ncol=(length(tree$tip.label)*2-1))
+  		ancestro <- tree$edge[(tree$edge[,2] == node)][1]
+  
+  	return(ancestro)
+  
+	}
+
+
+  
+  node.Matrix  <-  matrix(0,nrow=1,ncol=(length(tree$tip.label)*2-1))
   
   tree <- reorder.phylo(tree,order="postorder")
   
   raiz <-length(tree$tip.label)+1
   
-  matriz[1,raiz] <- 1
+  node.Matrix[1,raiz] <- 1
   
   hijos        <- Children(tree=tree,node=raiz)
   
-  matriz[1,hijos] <- matriz[1,raiz]
+  node.Matrix[1,hijos] <- node.Matrix[1,raiz]
   
   for (i in (((length(tree$tip.label)+2)):(length(tree$tip.label)+tree$Nnode))){
 
-    matriz[1,i]     <-  matriz[1,Ancestor(tree=tree,node=i)]+1 
+    node.Matrix[1,i]     <-  node.Matrix[1,Ancestor(tree=tree,node=i)]+1 
     hijos           <-  Children(tree=tree,node=i)
-    matriz[1,hijos] <-  matriz[1,i]
+    node.Matrix[1,hijos] <-  node.Matrix[1,i]
         
   }
   
-  matriz <- matriz[1,1:length(tree$tip.label)]
-  matriz <- sum(matriz)/matriz
-  matriz <- matriz/min(matriz)
+  node.Matrix <- node.Matrix[1,1:length(tree$tip.label)]
+  node.Matrix <- sum(node.Matrix)/node.Matrix
+  node.Matrix <- node.Matrix/min(node.Matrix)
 
-  return(matriz)
+  return(node.Matrix)
 }

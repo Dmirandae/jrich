@@ -278,4 +278,4 @@ length(which(as.data.frame(jack.Ranking.100.comparison)!=TRUE))
   count.Jack.Mismatch <- as.numeric(count.Jack.Mismatch) 
 
 ## the distribution of the error, rather bell shaped
-  hist(count.Jack.Mismatch)
+  hist(sort(count.Jack.Mismatch))

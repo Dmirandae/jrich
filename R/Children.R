@@ -1,9 +1,15 @@
 
 #'
-#' children of a node
+#' @title Children of a node.
 #'
-#' Get the children of a node in a tree
+#' @description Get the children of a node in a tree.
 #'
+#' @param tree is a single tree
+#' @param node is an integer, representing the node in APE notation
+#'
+#' @return The children nodes of the internal node; in most cases, two integers.
+#'
+
 
 Children <-
 function (tree=tree,node=node) {

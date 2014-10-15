@@ -14,9 +14,11 @@ The input tree is reordered in post order.
 Returns a vector with weights.
 }
 \examples{
-#indexi <- IndexI(tree)
-#newTree <- tree
-#newTree$Labels  <- indexi
-#plot(newTree)
+library(jrich)
+ data(tree)
+ indexi <- IndexI(tree)
+ newTree <- tree
+ newTree$Labels  <- indexi
+ plot(newTree)
 }
 
