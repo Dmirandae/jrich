@@ -4,7 +4,7 @@
 #' The function jack-knifes the terminals and calculates the indices.
 #'
 
-Jack.Index <- function (tree=tree, distrib=distrib, jtip=0) {
+Jack.Index <- function (tree=tree, distrib=distrib, jtip=0, verbose=TRUE) {
 
   ## Errors on trees / distributions
   ## names and numbers
@@ -39,7 +39,9 @@ Jack.Index <- function (tree=tree, distrib=distrib, jtip=0) {
     }    
   } 
   
-  print(paste("Deleted",deleted.Terminals,"out of",length(especies),sep="  "))
+  if(verbose){
+    print(paste("Deleted",deleted.Terminals,"out of",length(especies),sep="  "))
+  }
   
   filas<-length(names(distrib))-1
   resultados <-as.data.frame(matrix(data=0,nrow=filas,ncol=13))

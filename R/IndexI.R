@@ -15,6 +15,64 @@
 
 
 IndexI <-function (tree=tree) {
+
+
+## masked functions
+
+#' Weight the tips that are sisters of tips
+#'
+#' Input: a tree and a table of weights
+#' Returns a distribution
+#
+
+Weight.sister.tips <-
+function (tree=tree, matriz=matriz) {
+  
+  ## llena de 1 la matriz de pesos iniciales 
+  ## para terminales hermanas
+  
+  for (node in 1:length(tree$tip.label)){
+    if ((node <= length(tree$tip.label)) & Sisters.tip(tree,node)){
+      matriz[1,node]  <- 1
+   
+      #! ancestro           <-    tree$edge[(tree$edge[,2] == node)][1]
+      #! matriz[1,ancestro] <-    matriz[1,ancestro]+1
+      #! print(c(node,ancestro))
+      
+    }
+  }
+  return(matriz)
+}
+
+
+#' Weight the tips that are sisters of internal nodes
+#'
+#' Input: a tree and a table of weights
+#' Returns a distribution
+#
+
+Weight.other.nodes <-
+function (tree=tree,matriz=matriz) {
+  
+  ## recorrer los tips para asignar pesos que no han sido asignados
+  
+  for (i in ((length(tree$tip)+tree$Nnode):(length(tree$tip)+1))){
+    
+    if((any(Children(tree=tree,node=i) <= length (tree$tip.label))) &
+       (any(Children(tree=tree,node=i) >  length (tree$tip.label)))){
+      matriz[1,(Children(tree=tree,node=i))] <- max(matriz[1,Children(tree=tree,node=i)]) 
+      matriz[1,i] <- sum(matriz[1,Children(tree=tree,node=i)])  
+      }else{
+      matriz[1,i] <- sum(matriz[1,Children(tree=tree,node=i)])  
+    } 
+  }
+  
+  return(matriz[1,1:length(tree$tip)])
+  
+}
+
+
+
     
   matriz = matrix(0,nrow=1,ncol=(length(tree$tip.label)*2-1))
    

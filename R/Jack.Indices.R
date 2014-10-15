@@ -71,6 +71,8 @@ function (tree = tree, distrib = distrib, jtopol = jtopol,
   
   aciertos <- as.data.frame(aciertos)
   
+  aciertos <- aciertos/replicates*100
+
   return(aciertos)
   
 }

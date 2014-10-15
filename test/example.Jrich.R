@@ -13,11 +13,13 @@
 # 
 # ## Remove everything
 # 
-#   rm(list=ls())
+# 
+rm(list=ls())
 # 
 # ## If there is an open graphic device, close it
 # 
-#   if (dev.cur()!=1){dev.off()}
+#
+if (dev.cur()!=1){dev.off()}
 # 
 # ## Get the latest version of the library, from GitHub
 # 
@@ -66,9 +68,8 @@ setwd("~/Dropbox/papers/Jrich-R/jrich/test/")
   distrib.Puranius <- Read.Data("puranius.csv.gz")
 
 
-## You could read the distribution as a table
-## in any format and reshape it to the accepted format
-## as a data frame
+## You could read the distribution as a table in any format,  
+## and reshape it to the accepted format as a data frame
 ## e.g.
 ## B C D F G H I K M N species
 ## 1 0 0 0 0 0 0 0 0 0 1       1
@@ -85,7 +86,7 @@ setwd("~/Dropbox/papers/Jrich-R/jrich/test/")
 ## Here We use the generic function Jack.Index with two parameters tree and distrib.
 ## The default value is 0 Jack (nothing is deleted) 
 
-  initial.Values <-  Jack.Index(tree=tree.Puranius, distrib = distrib.Puranius)
+  initial.Values <-  Jack.Index(tree=tree.Puranius, distrib = distrib.Puranius,verbose=TRUE)
 
 
 
@@ -118,7 +119,9 @@ setwd("~/Dropbox/papers/Jrich-R/jrich/test/")
   best.Index <-   which.max(apply(correlations,2,sum))
 
   best.Index
-  
+
+  library(ggplot2)
+
   qplot(initial.Values$area,initial.Values[,names(best.Index)], xlab = "Areas", 
         ylab =paste(names(best.Index)," values"), main = paste(names(best.Index)," Index"))
 
@@ -211,3 +214,68 @@ best.Index.Multi <-   which.max(apply(correlations.Multi,2,sum))
 qplot(initial.Values.Multi$area,initial.Values.Multi[,names(best.Index.Multi)], xlab = "Areas", ylab =names(best.Index.Multi), main = "Index value")
 
 
+
+##3. A  delete experiment.  prob jtip jtopol 0.5 
+
+  jack.Multi <-  Multi.Index.Calc(Multitaxon1,jtip = 0.5,jtopol = 0.5) 
+
+## As you can see the jack topol and jtip present the deleted proportions, and the twoo data.frames are different 
+
+
+  all.equal(jack.Multi,initial.Values.Multi)
+
+vector <-   which.max(apply(correlations,2,sum))
+
+
+## Jack Ranking Multitaxon 100 times
+
+jack.Ranking.100 <- list()
+
+  for (i in 1:100){
+    print(i)
+    jack.Ranking.100[[i]] <-  as.data.frame(Rank.Indices(Multi.Index.Calc(Multitaxon1,jtip = 0.5,jtopol = 0.5)))
+  }
+
+## In the first run we got the ranking 
+
+  jack.Ranking.100[[1]][,vector]
+
+
+## convert the initial values to a ranking
+
+
+# initial ranking for Multitaxon
+
+initial.Ranking <-  as.data.frame(Rank.Indices(Multi.Index.Calc(Multitaxon1)))
+
+
+initial.Ranking[,vector]
+
+##Compare the whole ranking for THE best index, 100 times
+
+
+jack.Ranking.100.comparison <- NULL
+
+for (i in 1:100){
+  jack.Ranking.100.comparison[i] <- all.equal(initial.Ranking[,vector], 
+                                              jack.Ranking.100[[i]][,vector])
+  }
+
+
+## hits
+length(which(jack.Ranking.100.comparison==TRUE))
+
+## error
+length(which(as.data.frame(jack.Ranking.100.comparison)!=TRUE))
+
+
+## type of error
+
+ jack.Mismatch <- jack.Ranking.100.comparison[jack.Ranking.100.comparison!=TRUE]
+
+ count.Jack.Mismatch <- gsub(" string mismatches","",jack.Mismatch)
+
+  count.Jack.Mismatch <- as.numeric(count.Jack.Mismatch) 
+
+## the distribution of the error, rather bell shaped
+  hist(count.Jack.Mismatch)
