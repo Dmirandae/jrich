@@ -67,6 +67,20 @@ Jack.Index <- function (tree=tree, distrib=distrib, jtip=0, verbose=TRUE) {
   distrib<- distrib[match,]
   distrib<- distrib[,names(distrib)!="species"]
 
+  
+  endemicity <- function (x) {
+    sum(x)
+    if (sum(x)==1){
+      return(1)}else{
+        return(0)
+      } 
+  }
+  
+  
+  resultados$endem <-  apply(distrib,2,endemicity)
+  
+  
+  
   resultados$rich <-  apply(distrib,2,sum)
   
   indiceI.areas <- I*distrib
