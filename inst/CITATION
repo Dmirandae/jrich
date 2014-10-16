@@ -1,0 +1,8 @@
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "chapter",
+         title = "Support in Area Prioritization using phylogenetic information.",
+         author = (person("Daniel R.", "Miranda-Esquivel"),
+         year = 2015,
+         note = note)
