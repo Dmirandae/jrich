@@ -54,7 +54,20 @@ function (tree=tree, distrib=distrib) {
   distrib<- distrib[,names(distrib)!="species"]
 
   resultados$rich <-  apply(distrib,2,sum)
-  
+
+
+	endemicity <- function (x) {
+		sum(x)
+		if (sum(x)==1){
+		return(1)}else{
+			return(0)
+		} 
+	}
+
+
+	resultados$endem <-  apply(distrib,2,endemicity)
+	
+	
   indiceI.areas <- I*distrib
   indiceW.areas <- W*distrib
   

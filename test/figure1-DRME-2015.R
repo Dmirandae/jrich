@@ -72,30 +72,6 @@ distrib.figure1
 
 class(distrib.figure1)
 
-endemicity <- function (x) {
-  
-  sum(x)
-  if (sum(x)==1){
-    return(1)}else{
-      return(0)
-    }
-  
-}
-
-apply(distrib.figure1[,1:8],2,endemicity)
-
-
-
-## Default values
-## Here We use the generic function Jack.Index with two parameters tree and distrib.
-## The default value is 0 Jack (nothing is deleted) 
-
-initial.Values <-  Jack.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=TRUE)
-
-initial.Values[,1:10]
-
-initial.Values$endem <- apply(distrib.figure1[,1:8],2,endemicity)
-
 
 ##
 ## Note that the figures for Is/Ws indices  here are different from figure 1 in DRME 2015 as
