@@ -141,7 +141,7 @@ setwd("~/Dropbox/papers/Jrich-R/jrich/test/")
 ## previuous function, and evaluating the number of times we recover 1/2/3 position in the ranking.
 ## note that Jack.Index recovers the index values while Jack.Indices recovers the ranking comparison
 
-  jack.Puranius.jtip05.100replicates <- Jack.Indices(tree=tree.Puranius, distrib = distrib.Puranius,jtopol = 0.5, replicates = 100)
+  jack.Puranius.jtip05.100replicates <- Jack.Indices(tree=tree.Puranius, distrib = distrib.Puranius,jtip = 0.5, replicates = 100)
 
   jack.Puranius.jtip05.100replicates
 
@@ -233,7 +233,8 @@ jack.Ranking.100 <- list()
 
   for (i in 1:100){
     print(paste("replicate #",i))
-    jack.Ranking.100[[i]] <-  as.data.frame(Rank.Indices(Multi.Index.Calc(Multitaxon1,jtip = 0.5,jtopol = 0.5)))
+    jack.Ranking.100[[i]] <-  as.data.frame(Rank.Indices(Multi.Index.Calc(Multitaxon1,
+                                                              jtip = 0.5,jtopol = 0.5)))
   }
 
 ## In the first run we got the ranking 
@@ -279,3 +280,4 @@ length(which(as.data.frame(jack.Ranking.100.comparison)!=TRUE))
 
 ## the distribution of the error, rather bell shaped
   hist(sort(count.Jack.Mismatch))
+

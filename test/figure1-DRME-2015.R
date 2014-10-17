@@ -76,6 +76,7 @@ class(distrib.figure1)
 
 initial.Values <-  Jack.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=TRUE)
 
+initial.Values 
 
 ##
 ## Note that the figures for Is/Ws indices  here are different from figure 1 in DRME 2015 as
