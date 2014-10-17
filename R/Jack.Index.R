@@ -82,18 +82,18 @@ Jack.Index <- function (tree=tree, distrib=distrib, jtip=0, verbose=TRUE) {
   resultados$endem <-  apply(distrib,2,endemicity)
   
   resultados$rich <-  apply(distrib,2,sum)
- 
   
-  funct <- function(x) x/sum(x)
+  indiceI.areas <- I*distrib
+  indiceW.areas <- W*distrib
   
-  indices2 <-t(apply(distrib,1,funct))
-  indices2[indices2=="NaN"] <- 0
+  resultados$I <-  apply(indiceI.areas,2,sum)
+  resultados$W <-  apply(indiceW.areas,2,sum)
   
-  indiceIe.areas <- I*indices2
-  indiceWe.areas <- W*indices2
+  resultados$Is <- resultados$I/sum(resultados$I)
+  resultados$Ws <- resultados$W/sum(resultados$W)  
   
-  resultados$Ie <-  apply(indiceIe.areas,2,sum)
-  resultados$We <-  apply(indiceWe.areas,2,sum)
+  resultados$Ie <-  resultados$I/resultados$rich
+  resultados$We <-  resultados$W/resultados$rich
   
   resultados$Ise <- resultados$Ie/sum(resultados$Ie)  
   resultados$Wse <- resultados$We/sum(resultados$We)  
