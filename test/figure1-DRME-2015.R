@@ -1,4 +1,3 @@
-
 ############################################################################################################
 ##                                                                                                        ##
 ##            A Jrich worked example to reproduce figure 1 in Miranda-Esquivel (2015)                     ##
@@ -7,7 +6,7 @@
 
 ##
 ## DRME
-## 2014 10 09
+## 2014 10 16
 ##
 
 # 
@@ -70,13 +69,24 @@ distrib.figure1 <- Read.Data("figure1.csv")
 
 distrib.figure1
 
+
 class(distrib.figure1)
 
-
+## Standarization using area, by default in the function
 
 initial.Values <-  Jack.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=TRUE)
 
 initial.Values 
+
+## Standarization using tree
+
+initial.Values.s <-  Jack.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=TRUE,standard = "tree")
+
+initial.Values.s
+
+
+all.equal(initial.Values,initial.Values.s)
+
 
 ##
 ## Note that the figures for Is/Ws indices  here are different from figure 1 in DRME 2015 as
