@@ -91,13 +91,15 @@ library(ggplot2)
 
 correlations <-  cor(initial.Values[,2:10],initial.Values[,2:10])
 
-## 'Best' descriptor 
-
-best.Index <-   which.max(apply(correlations,2,sum))
 
 ## to avoid the highest "autocorrelation"
 
 diag(correlations) <- 0.0
+
+
+## 'Best' descriptor 
+
+best.Index <-   which.max(apply(correlations,2,sum))
 
 
 ## richness in not a good predictor for all indices  
