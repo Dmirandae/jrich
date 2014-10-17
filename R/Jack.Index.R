@@ -1,8 +1,10 @@
 #'
-#' Jack-knife indices in a single topology
+#' Indices values and Jack-knife indices for a single topology
 #'
-#' The function jack-knifes the terminals and calculates the indices.
+#' The funtion calculates standard and terminal jack-knifed indices I and W,
+#' along with Posadas et al. (2001) modifications.
 #'
+
 
 Jack.Index <- function (tree=tree, distrib=distrib, jtip=0, verbose=TRUE) {
 
@@ -78,8 +80,6 @@ Jack.Index <- function (tree=tree, distrib=distrib, jtip=0, verbose=TRUE) {
   
   
   resultados$endem <-  apply(distrib,2,endemicity)
-  
-  
   
   resultados$rich <-  apply(distrib,2,sum)
   

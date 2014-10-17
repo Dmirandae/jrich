@@ -1,5 +1,5 @@
 #
-#'   Wconsensus 
+#' @title   Wconsensus 
 # status     :   beta version
 # Copyright  :   GPL 3.x
 # Author     :   Daniel Rafael Miranda Esquivel
@@ -9,48 +9,36 @@
 #
 
 #
-# Constants
-#
-
-RoundDigit <- 4
-
-#
-# libraries
-#
-
-require(ape)
-
-#
-# functions
-#
-
-#
 # Main function
 #
-# wconsensus calculates the weighted consensus as presented in Sharkey et al. (2013)
-# The initial trees are hierarchically and nested clustered, according to common nodes
-# and weighted in accordance to the clusters created.
-#
-# The function receives as input data the initial trees (as a multiphylo object) 
-# and returns a collapsed tree according to the calculated weights, the default cut
-# value is 0.5
-#
-# Usage:
-#
-# ConsensusTree <- wconsensus (trees)
-## calculates  the weights and collapses the maj rule consensus
+#' @description wconsensus calculates the weighted consensus as presented in Sharkey et al. (2013)
+#' The initial trees are hierarchically and nested clustered, according to common nodes
+#' and weighted in accordance to the clusters created.
+#'
+#' The function receives as input data the initial trees (as a multiphylo object) 
+#' and returns a collapsed tree according to the calculated weights, the default cut
+#' value is 0.5
+#'
+#' Usage:
+#'
+#' ConsensusTree <- wconsensus (trees)
+#' calculates  the weights and collapses the maj rule consensus
 
-# ConsensusTree <- wconsensus (trees, collapse = FALSE)
-## calculates the weights BUT does not collapse the maj rule consensus
+#' ConsensusTree <- wconsensus (trees, collapse = FALSE)
+#' calculates the weights BUT does not collapse the maj rule consensus
 
-# ConsensusTree <- wconsensus (trees, cutvalue = 0.65)
-## calculates  the weights and collapses the maj rule consensus using
-## a cut value of 0.65
-##
+#' ConsensusTree <- wconsensus (trees, cutvalue = 0.65)
+#' calculates  the weights and collapses the maj rule consensus using
+#' a cut value of 0.65
+#'
 
 
 wconsensus <- function (InitialTrees, collapse = TRUE, 
                         cutvalue = 0.5001) {
+
+RoundDigit <- 4
+
+
   #
   # Calculate the number of trees
   #

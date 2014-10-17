@@ -7,10 +7,10 @@
 #' obtain the same ranking for 1:3 positions.
 
 Jack.Indices <-
-function (tree = tree, distrib = distrib, jtopol = jtopol,
+function (tree = tree, distrib = distrib, jtip = jtip,
           replicates=replicates) {
           
-  rank <- Rank.Indices(Calculate.Index(tree = tree,distrib = distrib))
+  rank <- Rank.Indices(Jack.Index(tree = tree,distrib = distrib))
   
   aciertos <- NULL
   
@@ -18,7 +18,7 @@ function (tree = tree, distrib = distrib, jtopol = jtopol,
     
   for (i in 1:replicates){
     
-    jack <- Rank.Indices(Jack.Index(tree, distrib, jtopol))
+    jack <- Rank.Indices(Jack.Index(tree = tree, distrib = distrib, jtip))
     
     if(all(rank$I[1:3] == jack$I[1:3])){
 		ok = 1}else{
