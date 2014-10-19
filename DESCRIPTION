@@ -10,3 +10,4 @@ Description: Jack-knife W and I indices (see Miranda-Esquivel, 2014)
 License: GPL-3
 URL: https://github.com/Dmirandae/jrich
 BugReports: https://github.com/Dmirandae/jrich/issues
+LazyData: true
