@@ -1,6 +1,6 @@
 Package: jrich
 Version: 0.0063
-Date: 2014-10-16
+Date: 2014-10-13
 Title: Jack-knife for I and W indices
 Author: Daniel R. Miranda-Esquivel
 Maintainer: Daniel R. Miranda-Esquivel <dmiranda@uis.edu.co>
@@ -9,4 +9,4 @@ Depends:
 Description: Jack-knife W and I indices (see Miranda-Esquivel, 2014)
 License: GPL-3
 URL: https://github.com/Dmirandae/jrich
-BugReports: https://code.google.com/p/jrich/issues/list
+BugReports: https://github.com/Dmirandae/jrich/issues
