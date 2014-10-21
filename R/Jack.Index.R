@@ -90,6 +90,9 @@ Jack.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose = TRUE
   	resultados$I <-  apply(indiceI.areas,2,sum)
   	resultados$W <-  apply(indiceW.areas,2,sum)
 
+  
+    resultados$Ie <-  resultados$I/resultados$rich
+    resultados$We <-  resultados$W/resultados$rich
 
   	##
   	## Two different approaches to s, per area or per Index,
@@ -97,20 +100,26 @@ Jack.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose = TRUE
   	## the absolute values differ
   	##
   	if (standard == "distribution"){
+      
   		resultados$Is <- resultados$I/sum(resultados$I)
   		resultados$Ws <- resultados$W/sum(resultados$W)	
+      
+  		resultados$Ise <- resultados$Ie/sum(resultados$Ie)  
+  		resultados$Wse <- resultados$We/sum(resultados$We)  
+      
   		}else{
-  			resultados$Is <- resultados$I/sum(I)
+  		
+        resultados$Is <- resultados$I/sum(I)
   			resultados$Ws <- resultados$W/sum(W)
+        
+  			resultados$Ise <- resultados$Ie/sum(I)
+  			resultados$Wse <- resultados$We/sum(W)
   		}
   
 
-  	resultados$Ie <-  resultados$I/resultados$rich
-  	resultados$We <-  resultados$W/resultados$rich
   
 
-  	resultados$Ise <- resultados$Ie/sum(resultados$Ie)  
-  	resultados$Wse <- resultados$We/sum(resultados$We)  
+ 
   
   	resultados[,c(2:13)] <- round(resultados[,c(2:13)],3)
   

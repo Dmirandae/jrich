@@ -82,9 +82,20 @@ initial.Values <-  Jack.Index(tree=tree.figure1, distrib = distrib.figure1,verbo
 initial.Values 
 
 ##
-## Note that the figures for Is/Ws indices  here are different from figure 1 in DRME 2015 as
+## Note that the figures for Is/Ws indiceshere are different from figure 1 in DRME 2015 as
 ## here are re-scaled to sum 1, but the proportions are exactly the same.
 ##
+## To obtain the same figures for Is/Ws indices as figure 1 in DRME 2015, 
+## you must use
+##
+
+figure1.Values <-  Jack.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=TRUE,standard = "tree")
+
+figure1.Values
+
+all.equal(initial.Values,figure1.Values)
+
+
 
 ## Plot the initial Values, for the Index that explains the most
 
