@@ -1,5 +1,5 @@
 #'
-#' I index value for a single topology
+#' @title I index value for a single topology.
 #'
 #' This function assigns the same weight to sister clades
 #' (see Van-Wright et al., 1981). 
@@ -7,20 +7,18 @@
 #' 
 #' Returns a vector with weights.
 #'
-#' @example
-#'   library(jrich)
-#'   data(tree)
-#'   plot(tree)
-#'   indexi <- IndexI(tree)
-#'   newTree <- tree
-#'   newTree$tip.label  <- indexi
-#'   plot(newTree)
-#'   
+#' @examples
+#'  library(jrich)
+#'  data(tree)
+#'  plot(tree)
+#'  indexi               <- IndexI(tree)
+#'  newTree              <- tree
+#'  newTree$tip.label    <- indexi
+#'  plot(newTree)
 
 
-IndexI <-function (tree=tree) {
-
-
+IndexI <- function(tree=tree) {
+  
   tree <- reorder.phylo(tree,order="postorder")
     
   matriz = matrix(0,nrow=1,ncol=(length(tree$tip.label)*2-1))

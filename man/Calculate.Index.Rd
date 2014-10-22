@@ -10,4 +10,16 @@ Calculate.Index(tree = tree, distrib = distrib, jtip = 0,
 The funtion calculates standard and terminal jack-knifed indices I and W
 [see Miranda-Esquivel 2015], along with Posadas et al. 2001 modifications.
 }
+\examples{
+library(jrich)
+data(tree)
+data(distribution)
+##
+## Standarized by the sum of indices in the distribution
+Calculate.Index(tree=tree, distrib = distribution, verbose=TRUE, standard = "distribution")
+
+##
+## Standarized by the sum of indices in the tree (as figure 1 in Miranda-Esquivel 2015)
+Calculate.Index(tree=tree, distrib = distribution, verbose=TRUE, standard = "tree")
+}
 

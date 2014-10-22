@@ -7,7 +7,7 @@
 #' 
 #' Returns a vector with weights.
 #'
-#' @example
+#' @examples
 #'   library(jrich)
 #'   data(tree)
 #'   plot(tree)

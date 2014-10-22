@@ -13,8 +13,8 @@ Best.Index(tree = tree, distrib = distrib, jtip = jtip,
 \description{
 The function jack-knifes the terminals and
 calculates the indices value m (=replicates) times.
-The function returns the success that correspond to
-obtain the same ranking for X,Y positions, established as the vector
+The function returns the success that corresponds to
+the same ranking for X:Y positions, established as the vector
 success (by default success is 1:3 positions)).
 
 The function jack-knifes the terminals and

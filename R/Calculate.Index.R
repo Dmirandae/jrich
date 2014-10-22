@@ -10,11 +10,11 @@
 #' data(distribution)
 #' ##
 #' ## Standarized by the sum of indices in the distribution
-#' Calculate.Index(tree=tree, distrib = distribution, verbose=T, standard = "distribution")
+#' Calculate.Index(tree=tree, distrib = distribution, verbose=TRUE, standard = "distribution")
 #' 
 #' ##
 #' ## Standarized by the sum of indices in the tree (as figure 1 in Miranda-Esquivel 2015)
-#' Calculate.Index(tree=tree, distrib = distribution, verbose=T, standard = "tree")
+#' Calculate.Index(tree=tree, distrib = distribution, verbose=TRUE, standard = "tree")
 #' 
 
 
