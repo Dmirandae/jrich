@@ -7,13 +7,15 @@
 #' 
 #' Returns a vector with weights.
 #'
-#' @examples
+#' @example
 #'   library(jrich)
 #'   data(tree)
+#'   plot(tree)
 #'   indexw <- IndexW(tree)
 #'   newTree <- tree
-#'   newTree$Labels  <- indexw
+#'   newTree$tip.label  <- indexw
 #'   plot(newTree)
+#'   
 
 
 IndexW <- function (tree=tree) {

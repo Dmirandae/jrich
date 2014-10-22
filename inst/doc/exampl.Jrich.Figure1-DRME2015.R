@@ -52,11 +52,13 @@ setwd("~/Dropbox/papers/Jrich-R/jrich/test/")
 ## read tree 1
 ## The tree is in newick format
 
+
+
 tree.figure1 <- read.tree ("figure1.tre")
 
-comment(tree.figure1) <- c("An hypothetical tree","From: Miranda-Esquivel 2015")
+## or you can upload the data set from data
 
-save(tree.figure1,file="../data/figure1.tree.rda")
+data(tree)
 
 
 ## You might want plot the tree
@@ -77,22 +79,33 @@ distrib.figure1 <- Read.Data("figure1.csv")
 
 distrib.figure1
 
-
-
 class(distrib.figure1)
 
 
+## And the initial Index calculation, with a verbose output
 
-initial.Values <-  Calculate.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=TRUE)
+
+initial.Values <-  Calculate.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=T)
 
 initial.Values 
 
 ##
-## Note that the figures for Is/Ws indices  here are different from figure 1 in DRME 2015 as
+## Note that the figures for Is/Ws indices here are different from figure 1 in DRME 2015 as
 ## here are re-scaled to sum 1, but the proportions are exactly the same.
 ##
+## To obtain the same figures for Is/Ws indices as figure 1 in DRME 2015, 
+## you must use
+##
 
-## Plot the initial Values, for the Index that explains the most
+figure1.Values <-  Calculate.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=F,standard = "tree")
+
+figure1.Values
+
+all.equal(initial.Values,figure1.Values)
+
+
+
+## Plot the initial Values, for the Index that "explains the most"
 
 library(ggplot2)
 
@@ -117,7 +130,7 @@ best.Index <-   which.max(apply(correlations,2,sum))
 which(abs(correlations[,"rich"])==max(abs(correlations[,"rich"])))
 
 
-## 2. The index that explains the most is
+## 2. The index that "explains the most" (without resampling) is
 
 best.Index <-   which.max(apply(correlations,2,sum))
 
@@ -134,7 +147,7 @@ qplot(initial.Values$area,initial.Values[,names(best.Index)], xlab = "Areas",
 
 ## A single Jack-knife replicate with a jtip value of 0.5
 
-jack.Values <-  Calculate.Index(tree=tree.Puranius, distrib = distrib.Puranius,jtip = 0.5)
+jack.Values <-  Calculate.Index(tree=tree.figure1, distrib = distrib.figure1,jtip = 0.5)
 
 
 ## The absolute difference between these two outputs
@@ -142,28 +155,21 @@ jack.Values <-  Calculate.Index(tree=tree.Puranius, distrib = distrib.Puranius,j
 all.equal(initial.Values, jack.Values)
 
 
-## But a single replicate is not interesting, therefore we repeat the process 100 times, using a wrap to the 
-## previuous function, and evaluating the number of times we recover 1/2/3 position in the ranking.
-## note that Calculate.Index recovers the index values while Best.Index recovers the ranking comparison
-
-jack.Puranius.jtip05.100replicates <- Best.Index(tree=tree.Puranius, distrib = distrib.Puranius,jtip = 0.5, replicates = 100)
-
-jack.Puranius.jtip05.100replicates
+## 2. But a single replicate is not interesting, therefore we repeat the process 100 times, using two approaches
 
 
+## 2.1 Jack-knife with a jtip value of 0.5, 100 replicates, using Calculate.Index function
 
 
-## Jack-knife with a jtip value of 0.5, 100 replicates
+jack.Ranking.100 <- list()
 
-
-  jack.Ranking.100 <- list()
-
-  for (i in 1:100){
-    print(paste("replicate #",i))
+for (i in 1:100){
+  print(paste("replicate #",i))
   
-    jack.Ranking.100[[i]] <-  as.data.frame(Rank.Indices(Calculate.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=FALSE,jtip = 0.5)))
-    
-  }
+  jack.Ranking.100[[i]] <-  as.data.frame(Rank.Indices(Calculate.Index(tree=tree.figure1, distrib = distrib.figure1,
+                                                                  verbose=FALSE,jtip = 0.5)))
+  
+}
 
 
 
@@ -199,5 +205,31 @@ count.Jack.Mismatch <- gsub(" string mismatches","",jack.Mismatch)
 count.Jack.Mismatch <- as.numeric(count.Jack.Mismatch) 
 
 ## the distribution of the error, not so bell shaped
-hist(sort(count.Jack.Mismatch))
+hist(sort(count.Jack.Mismatch,na.last = NA))
+
+
+# 2.2 a wrap to the  previuous function, and evaluating the number of times we recover 1/2/3 position in the ranking.
+## note that Calculate.Index recovers the index values while Best.Index recovers the ranking comparison
+
+jack.figure1.jtip05.100replicates <- Best.Index(tree=tree.figure1, distrib = distrib.figure1,jtip = 0.5, replicates = 100, success = c(1:2))
+
+jack.figure1.jtip05.100replicates
+
+best.Index = names(jack.figure1.jtip05.100replicates)[c(which(jack.figure1.jtip05.100replicates == 
+                                                    max(jack.figure1.jtip05.100replicates)))]
+
+
+## W / Ws explains better than I, as they have a jack-knife value. In this context we can plot Ws
+
+for (i in 1:( length(best.Index) )){
+
+print(best.Index[i])
+
+print(qplot(initial.Values$area,initial.Values[,best.Index[i]], xlab = "Areas", 
+      ylab =paste(best.Index[i]," values"), main = paste("Figure 1, ",best.Index[i]," Index")))
+
+}
+
+# Areas F/G/H have a higher value as they have higher richness, but even so, the support is relatively low
+
 
