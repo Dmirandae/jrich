@@ -8,12 +8,12 @@
 #' Returns a vector with weights.
 #'
 #' @examples
-#'  # library(jrich)
-#'  # data(tree.figure1)
-#'  # indexw <- IndexW(tree.figure1)
-#'  # newTree <- tree.figure1
-#'  # newTree$Labels  <- indexw
-#'  # plot(newTree)
+#'   library(jrich)
+#'   data(tree)
+#'   indexw <- IndexW(tree)
+#'   newTree <- tree
+#'   newTree$Labels  <- indexw
+#'   plot(newTree)
 
 
 IndexW <- function (tree=tree) {

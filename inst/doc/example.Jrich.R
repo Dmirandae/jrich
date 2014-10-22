@@ -83,10 +83,10 @@ setwd("~/Dropbox/papers/Jrich-R/jrich/test/")
 
 
 ## Default values
-## Here We use the generic function Jack.Index with two parameters tree and distrib.
+## Here We use the generic function Calculate.Index with two parameters tree and distrib.
 ## The default value is 0 Jack (nothing is deleted) 
 
-  initial.Values <-  Jack.Index(tree=tree.Puranius, distrib = distrib.Puranius,verbose=TRUE)
+  initial.Values <-  Calculate.Index(tree=tree.Puranius, distrib = distrib.Puranius,verbose=TRUE)
 
 
 
@@ -129,7 +129,7 @@ setwd("~/Dropbox/papers/Jrich-R/jrich/test/")
 
 ## A single Jack-knife replicate with a jtip value of 0.5
 
-  jack.Values <-  Jack.Index(tree=tree.Puranius, distrib = distrib.Puranius,jtip = 0.5)
+  jack.Values <-  Calculate.Index(tree=tree.Puranius, distrib = distrib.Puranius,jtip = 0.5)
 
 
 ## The absolute difference between these two outputs
@@ -139,9 +139,9 @@ setwd("~/Dropbox/papers/Jrich-R/jrich/test/")
 
 ## But a single replicate is not intersting, therefore we repeat the process 100 times, using a wrap to the 
 ## previuous function, and evaluating the number of times we recover 1/2/3 position in the ranking.
-## note that Jack.Index recovers the index values while Jack.Indices recovers the ranking comparison
+## note that Calculate.Index recovers the index values while Best.Index recovers the ranking comparison
 
-  jack.Puranius.jtip05.100replicates <- Jack.Indices(tree=tree.Puranius, distrib = distrib.Puranius,jtopol = 0.5, replicates = 100)
+  jack.Puranius.jtip05.100replicates <- Best.Index(tree=tree.Puranius, distrib = distrib.Puranius,jtopol = 0.5, replicates = 100)
 
   jack.Puranius.jtip05.100replicates
 

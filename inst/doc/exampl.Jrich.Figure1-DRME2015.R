@@ -83,7 +83,7 @@ class(distrib.figure1)
 
 
 
-initial.Values <-  Jack.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=TRUE)
+initial.Values <-  Calculate.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=TRUE)
 
 initial.Values 
 
@@ -134,7 +134,7 @@ qplot(initial.Values$area,initial.Values[,names(best.Index)], xlab = "Areas",
 
 ## A single Jack-knife replicate with a jtip value of 0.5
 
-jack.Values <-  Jack.Index(tree=tree.Puranius, distrib = distrib.Puranius,jtip = 0.5)
+jack.Values <-  Calculate.Index(tree=tree.Puranius, distrib = distrib.Puranius,jtip = 0.5)
 
 
 ## The absolute difference between these two outputs
@@ -144,9 +144,9 @@ all.equal(initial.Values, jack.Values)
 
 ## But a single replicate is not interesting, therefore we repeat the process 100 times, using a wrap to the 
 ## previuous function, and evaluating the number of times we recover 1/2/3 position in the ranking.
-## note that Jack.Index recovers the index values while Jack.Indices recovers the ranking comparison
+## note that Calculate.Index recovers the index values while Best.Index recovers the ranking comparison
 
-jack.Puranius.jtip05.100replicates <- Jack.Indices(tree=tree.Puranius, distrib = distrib.Puranius,jtip = 0.5, replicates = 100)
+jack.Puranius.jtip05.100replicates <- Best.Index(tree=tree.Puranius, distrib = distrib.Puranius,jtip = 0.5, replicates = 100)
 
 jack.Puranius.jtip05.100replicates
 
@@ -161,7 +161,7 @@ jack.Puranius.jtip05.100replicates
   for (i in 1:100){
     print(paste("replicate #",i))
   
-    jack.Ranking.100[[i]] <-  as.data.frame(Rank.Indices(Jack.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=FALSE,jtip = 0.5)))
+    jack.Ranking.100[[i]] <-  as.data.frame(Rank.Indices(Calculate.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=FALSE,jtip = 0.5)))
     
   }
 

@@ -79,7 +79,7 @@ class(distrib.figure1)
 ## And th initial Index calculation, with a verbose output
 
 
-initial.Values <-  Jack.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=T)
+initial.Values <-  Calculate.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=T)
 
 initial.Values 
 
@@ -91,7 +91,7 @@ initial.Values
 ## you must use
 ##
 
-figure1.Values <-  Jack.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=F,standard = "tree")
+figure1.Values <-  Calculate.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=F,standard = "tree")
 
 figure1.Values
 
@@ -141,7 +141,7 @@ qplot(initial.Values$area,initial.Values[,names(best.Index)], xlab = "Areas",
 
 ## A single Jack-knife replicate with a jtip value of 0.5
 
-jack.Values <-  Jack.Index(tree=tree.figure1, distrib = distrib.figure1,jtip = 0.5)
+jack.Values <-  Calculate.Index(tree=tree.figure1, distrib = distrib.figure1,jtip = 0.5)
 
 
 ## The absolute difference between these two outputs
@@ -152,7 +152,7 @@ all.equal(initial.Values, jack.Values)
 ## 2. But a single replicate is not interesting, therefore we repeat the process 100 times, using two approaches
 
 
-## 2.1 Jack-knife with a jtip value of 0.5, 100 replicates, using Jack.Index function
+## 2.1 Jack-knife with a jtip value of 0.5, 100 replicates, using Calculate.Index function
 
 
 jack.Ranking.100 <- list()
@@ -160,7 +160,7 @@ jack.Ranking.100 <- list()
 for (i in 1:100){
   print(paste("replicate #",i))
   
-  jack.Ranking.100[[i]] <-  as.data.frame(Rank.Indices(Jack.Index(tree=tree.figure1, distrib = distrib.figure1,
+  jack.Ranking.100[[i]] <-  as.data.frame(Rank.Indices(Calculate.Index(tree=tree.figure1, distrib = distrib.figure1,
                                                                   verbose=FALSE,jtip = 0.5)))
   
 }
@@ -203,9 +203,9 @@ hist(sort(count.Jack.Mismatch))
 
 
 # 2.2 a wrap to the  previuous function, and evaluating the number of times we recover 1/2/3 position in the ranking.
-## note that Jack.Index recovers the index values while Jack.Indices recovers the ranking comparison
+## note that Calculate.Index recovers the index values while Best.Index recovers the ranking comparison
 
-jack.figure1.jtip05.100replicates <- Jack.Indices(tree=tree.figure1, distrib = distrib.figure1,jtip = 0.5, replicates = 100)
+jack.figure1.jtip05.100replicates <- Best.Index(tree=tree.figure1, distrib = distrib.figure1,jtip = 0.5, replicates = 100)
 
 jack.figure1.jtip05.100replicates
 

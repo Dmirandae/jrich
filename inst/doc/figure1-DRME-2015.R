@@ -74,7 +74,7 @@ class(distrib.figure1)
 
 
 
-initial.Values <-  Jack.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=TRUE)
+initial.Values <-  Calculate.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=TRUE)
 
 
 ##
@@ -128,7 +128,7 @@ qplot(initial.Values$area,initial.Values[,names(best.Index)], xlab = "Areas",
   for (i in 1:100){
     print(paste("replicate #",i))
   
-    jack.Ranking.100[[i]] <-  as.data.frame(Rank.Indices(Jack.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=FALSE,jtip = 0.5)))
+    jack.Ranking.100[[i]] <-  as.data.frame(Rank.Indices(Calculate.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=FALSE,jtip = 0.5)))
     
   }
 
