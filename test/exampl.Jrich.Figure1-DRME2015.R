@@ -82,7 +82,7 @@ distrib.figure1
 class(distrib.figure1)
 
 
-## And th initial Index calculation, with a verbose output
+## And the initial Index calculation, with a verbose output
 
 
 initial.Values <-  Calculate.Index(tree=tree.figure1, distrib = distrib.figure1,verbose=T)
@@ -211,7 +211,7 @@ hist(sort(count.Jack.Mismatch,na.last = NA))
 # 2.2 a wrap to the  previuous function, and evaluating the number of times we recover 1/2/3 position in the ranking.
 ## note that Calculate.Index recovers the index values while Best.Index recovers the ranking comparison
 
-jack.figure1.jtip05.100replicates <- Best.Index(tree=tree.figure1, distrib = distrib.figure1,jtip = 0.5, replicates = 100)
+jack.figure1.jtip05.100replicates <- Best.Index(tree=tree.figure1, distrib = distrib.figure1,jtip = 0.5, replicates = 100, success = c(1:2))
 
 jack.figure1.jtip05.100replicates
 

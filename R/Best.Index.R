@@ -11,7 +11,7 @@
 
 Best.Index <-
 function (tree = tree, distrib = distrib, jtip = jtip,
-          replicates=replicates, success=c(1:3) ) {
+          replicates = replicates, success = (c(1:3)) ) {
           
   rank <- Rank.Indices(Calculate.Index(tree = tree,distrib = distrib))
   
