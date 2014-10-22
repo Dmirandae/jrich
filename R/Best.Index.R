@@ -6,12 +6,12 @@
 #' calculates the indices value m (=replicates) times.  
 #' The function returns the success that correspond to  
 #' obtain the same ranking for X,Y positions, established as the vector
-#' success (by default success)).
+#' success (by default success is 1:3 positions)).
 #'
 
 Best.Index <-
 function (tree = tree, distrib = distrib, jtip = jtip,
-          replicates=replicates, success=c(success) ) {
+          replicates=replicates, success=c(1:3) ) {
           
   rank <- Rank.Indices(Calculate.Index(tree = tree,distrib = distrib))
   

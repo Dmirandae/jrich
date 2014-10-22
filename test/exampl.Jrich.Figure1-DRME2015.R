@@ -52,7 +52,13 @@ setwd("~/Dropbox/papers/Jrich-R/jrich/test/")
 ## read tree 1
 ## The tree is in newick format
 
+
+
 tree.figure1 <- read.tree ("figure1.tre")
+
+## or you can upload the data set from data
+
+data(tree)
 
 
 ## You might want plot the tree
@@ -199,7 +205,7 @@ count.Jack.Mismatch <- gsub(" string mismatches","",jack.Mismatch)
 count.Jack.Mismatch <- as.numeric(count.Jack.Mismatch) 
 
 ## the distribution of the error, not so bell shaped
-hist(sort(count.Jack.Mismatch))
+hist(sort(count.Jack.Mismatch,na.last = NA))
 
 
 # 2.2 a wrap to the  previuous function, and evaluating the number of times we recover 1/2/3 position in the ranking.
