@@ -3,8 +3,11 @@
 #' Jack-knife indices in n topologies one time
 #'
 #' The function calculates the indices values for a MultiData list 
-#' one time 
+#' one time. 
 #'
+#' Returns the indices values
+#'
+
 
 Multi.Index.Calc <-
 function (MultiData = MultiData, jtip = 0, jtopol = 0) {
