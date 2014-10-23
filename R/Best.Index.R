@@ -1,82 +1,81 @@
 #'
-#' Jack-knife indices in a single topology m times and evaluates a 
-#' success rule.
+#' @title 
+#' Jack-knife indices in a single topology m times and evaluates a success rule.
 #'
-#' The function jack-knifes the terminals and
-#' calculates the indices value m (=replicates) times.  
-#' The function returns the success that corresponds to  
-#' the same ranking for X:Y positions, established as the vector
-#' success (by default success is 1:3 positions)).
+#' @description 
+#' The function jack-knifes the terminals jtip (=replicates) times, and calculates the number of times 
+#' that each replicate recovers the same initial initial.Rankinging (X:Y positions), by default success is 1:3 positions.
+#' The function returns the number of hits.
 #'
 
 Best.Index <-
 function (tree = tree, distrib = distrib, jtip = jtip,
           replicates = replicates, success = (c(1:3)) ) {
           
-  rank <- Rank.Indices(Calculate.Index(tree = tree,distrib = distrib))
+  initial.Ranking <- Rank.Indices(Calculate.Index(tree = tree,distrib = distrib))
   
-  aciertos <- NULL
+  success <- NULL
   
-  aciertos$I <- aciertos$Ie <- aciertos$Is <- aciertos$Ise <- aciertos$W <- aciertos$We <- aciertos$Ws <- aciertos$Wse <-0
+  success$I <- success$Ie <- success$Is <- success$Ise <- success$W <- success$We <- success$Ws <- success$Wse <-0
     
   for (i in 1:replicates){
     
-    jack <- Rank.Indices(Calculate.Index(tree = tree, distrib = distrib, jtip))
+    jack.Ranking<- Rank.Indices(Calculate.Index(tree = tree, distrib = distrib, jtip))
     
-    if(all(rank$I[success] == jack$I[success])){
+    if(all(initial.Ranking$I[success] == jack$I[success])){
 		ok = 1}else{
 		ok=0
     }
     
-    aciertos$I <- aciertos$I+ok
+    success$I <- success$I+ok
     
-    if(all(rank$Ie[success] == jack$Ie[success])){
+    if(all(initial.Ranking$Ie[success] == jack$Ie[success])){
 		ok = 1}else{
 		ok=0
 	}
-    aciertos$Ie <- aciertos$Ie+ok
+    success$Ie <- success$Ie+ok
     
-    if(all(rank$Is[success] == jack$Is[success])){
+    if(all(initial.Ranking$Is[success] == jack$Is[success])){
 		ok = 1}else{
 		ok=0
 	}
-    aciertos$Is <- aciertos$Is+ok
+    success$Is <- success$Is+ok
     
-    if(all(rank$Ise[success] == jack$Ise[success])){
+    if(all(initial.Ranking$Ise[success] == jack$Ise[success])){
 		ok = 1}else{
 		ok=0
 	}
-    aciertos$Ise <- aciertos$Ise+ok
+    success$Ise <- success$Ise+ok
       
-    if(all(rank$W[success] == jack$W[success])){
+    if(all(initial.Ranking$W[success] == jack$W[success])){
 		ok = 1}else{
 		ok=0
 	}
-    aciertos$W <- aciertos$I+ok
+    success$W <- success$I+ok
     
-    if(all(rank$We[success] == jack$We[success])){
+    if(all(initial.Ranking$We[success] == jack$We[success])){
 		ok = 1}else{
 		ok=0
 	}
-    aciertos$We <- aciertos$We+ok
+    success$We <- success$We+ok
     
-    if(all(rank$Ws[success] == jack$Ws[success])){
+    if(all(initial.Ranking$Ws[success] == jack$Ws[success])){
 		ok = 1}else{
 		ok=0
 	}
-    aciertos$Ws <- aciertos$Ws+ok
+    success$Ws <- success$Ws+ok
     
-    if(all(rank$Wse[success] == jack$Wse[success])){
+    if(all(initial.Ranking$Wse[success] == jack$Wse[success])){
 		ok = 1}else{
 		ok=0
 	}
-    aciertos$Wse <- aciertos$Wse+ok      
+    success$Wse <- success$Wse+ok      
   }
   
-  aciertos <- as.data.frame(aciertos)
+  success <- as.data.frame(success)
   
-  aciertos <- aciertos/replicates*100
+  success <- success/replicates*100
 
-  return(aciertos)
+  return(success)
   
 }
