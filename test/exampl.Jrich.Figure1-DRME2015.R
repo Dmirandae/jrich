@@ -4,7 +4,7 @@
 ##                   A Jrich worked example                                        ## 
 ##                                                                                 ##
 ##   1. An example with a single topology and distribution                         ##
-##      to reproduce figure 1 in Miranda-Esquivel (2015)                           ##
+##      to reproduce Figure  in Miranda-Esquivel (2015)                           ##
 ##                                                                                 ##
 #####################################################################################
 
@@ -90,10 +90,10 @@ initial.Values <-  Calculate.Index(tree=tree.figure1, distrib = distrib.figure1,
 initial.Values 
 
 ##
-## Note that the figures for Is/Ws indices here are different from figure 1 in DRME 2015 as
+## Note that the figures for Is/Ws indices here are different from Figure  in DRME 2015 as
 ## here are re-scaled to sum 1, but the proportions are exactly the same.
 ##
-## To obtain the same figures for Is/Ws indices as figure 1 in DRME 2015, 
+## To obtain the same figures for Is/Ws indices as Figure  in DRME 2015, 
 ## you must use
 ##
 
@@ -137,7 +137,7 @@ best.Index <-   which.max(apply(correlations,2,sum))
 best.Index
 
 qplot(initial.Values$area,initial.Values[,names(best.Index)], xlab = "Areas", 
-      ylab =paste(names(best.Index)," values"), main = paste("Figure 1, ",names(best.Index)," Index"))
+      ylab =paste(names(best.Index)," values"), main = paste("Figure.  ",names(best.Index)," Index"))
 
 
 ## In this example Areas A / F / G / H have the same ranking, as area A harbors species I, while
@@ -179,9 +179,13 @@ initial.Ranking <-  as.data.frame(Rank.Indices(initial.Values))
 
 jack.Ranking.100.comparison <- NULL
 
-for (i in 1:100){
-  jack.Ranking.100.comparison[i] <- all.equal(initial.Ranking[,best.Index], 
-                                              jack.Ranking.100[[i]][,best.Index])
+for (i in 1:500){
+  
+  if(!all(jack.Ranking.100[[i]][,best.Index] == "X0X")){
+    jack.Ranking.100.comparison[i] <- all.equal(initial.Ranking[,best.Index], 
+                                                  jack.Ranking.100[[i]][,best.Index])  
+  }else jack.Ranking.100.comparison[i] <- 0
+  
 }
 
 
@@ -211,7 +215,8 @@ hist(sort(count.Jack.Mismatch,na.last = NA))
 # 2.2 a wrap to the  previuous function, and evaluating the number of times we recover 1/2/3 position in the ranking.
 ## note that Calculate.Index recovers the index values while Best.Index recovers the ranking comparison
 
-jack.figure1.jtip05.100replicates <- Best.Index(tree=tree.figure1, distrib = distrib.figure1,jtip = 0.5, replicates = 100, success = c(1:2))
+jack.figure1.jtip05.100replicates <- Best.Index(tree=tree.figure1, distrib = distrib.figure1,
+                                                jtip = 0.5, replicates = 500, success = c(1:2))
 
 jack.figure1.jtip05.100replicates
 
@@ -226,7 +231,7 @@ for (i in 1:( length(best.Index) )){
 print(best.Index[i])
 
 print(qplot(initial.Values$area,initial.Values[,best.Index[i]], xlab = "Areas", 
-      ylab =paste(best.Index[i]," values"), main = paste("Figure 1, ",best.Index[i]," Index")))
+      ylab =paste(best.Index[i]," values"), main = paste("Figure.  ",best.Index[i]," Index")))
 
 }
 
