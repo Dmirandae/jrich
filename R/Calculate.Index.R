@@ -39,6 +39,9 @@ Calculate.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose =
    
 
   	areas       <-  names(distrib)[-length(distrib)]
+  	
+  	if (length(areas) < 2) {stop("Can not handle less than two areas")}
+  	
   	especies    <-  distrib$species
   
   	deleted.Terminals    <-  0
