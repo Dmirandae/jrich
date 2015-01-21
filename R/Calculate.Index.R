@@ -78,22 +78,18 @@ Calculate.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose =
   
   	match <- match(tree$tip.label,distrib$species)
   
-  	distrib<- distrib[match,]
-  	distrib<- distrib[,names(distrib)!="species"]
-
+  	distrib <- distrib[match,]
+  	distrib <- distrib[,names(distrib)!="species"]
   
-  	endemicity <- function (x) {
-    	sum(x)
-    	if (sum(x)==1){
-      		return(1)}else{
-        		return(0)
-      	} 
-  	}
+    resultados$rich <-  apply(distrib,2,sum)
   
   
-  	resultados$endem <-  apply(distrib,2,endemicity)
+  endemicSpecies       <- apply(distrib,1,sum)
+  endemicSpecies[which(endemicSpecies != 1)] = 0
+  endemicityMatrix     <-  endemicSpecies*distrib
+  sumEndemicityMatrix  <- apply(endemicityMatrix,2,sum) 
+  resultados$endem     <-  resultados$rich*sumaEndemicityMatrix
   
-  	resultados$rich <-  apply(distrib,2,sum)
   
   	indiceI.areas <- I*distrib
   	indiceW.areas <- W*distrib
