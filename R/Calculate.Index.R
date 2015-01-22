@@ -40,7 +40,7 @@ Calculate.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose =
 
   	areas       <-  names(distrib)[-length(distrib)]
   	
-  	#if (length(areas) < 2) {stop("Can not handle just one areas")}
+  	 if(length(areas) < 2) {warning("Endemism values could be missleading")}
   	
   	especies    <-  distrib$species
   
@@ -95,6 +95,9 @@ Calculate.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose =
   sumEndemicityMatrix  <-  apply(as.matrix(endemicityMatrix),2,sum) 
   resultados$endem     <-  resultados$rich*sumEndemicityMatrix
   
+  if (resultados$rich < resultados$endem ){
+      resultados$endem=resultados$rich
+      }
   
   	indiceI.areas <- I*distrib
   	indiceW.areas <- W*distrib
