@@ -75,7 +75,7 @@ plot(tree.figure1)
 
 ## the function creates a data frame
 
-distrib.figure1 <- Read.Data("endemism.csv")
+distrib.figure1 <- Read.Data("figure1.csv")
 
 distrib.figure1
 

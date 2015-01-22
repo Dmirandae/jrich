@@ -40,7 +40,7 @@ Calculate.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose =
 
   	areas       <-  names(distrib)[-length(distrib)]
   	
-  	if (length(areas) < 2) {stop("Can not handle less than two areas")}
+  	#if (length(areas) < 2) {stop("Can not handle just one areas")}
   	
   	especies    <-  distrib$species
   
@@ -83,8 +83,10 @@ Calculate.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose =
   
   	distrib <- distrib[match,]
   	distrib <- distrib[,names(distrib)!="species"]
+  	
+  	## here I have to include a possible solution to handle a single area 
   
-    resultados$rich <-  apply(distrib,2,sum)
+    resultados$rich <-  apply(as.matrix(distrib),2,sum)
   
   
   endemicSpecies       <- apply(distrib,1,sum)
