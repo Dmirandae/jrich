@@ -95,9 +95,9 @@ Calculate.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose =
   sumEndemicityMatrix  <-  apply(as.matrix(endemicityMatrix),2,sum) 
   resultados$endem     <-  resultados$rich*sumEndemicityMatrix
   
-  if (resultados$rich < resultados$endem ){
-      resultados$endem=resultados$rich
-      }
+  #if (resultados$rich < resultados$endem ){
+  #    resultados$endem=resultados$rich
+  #    }
   
   	indiceI.areas <- I*distrib
   	indiceW.areas <- W*distrib
