@@ -92,7 +92,7 @@ Calculate.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose =
   endemicSpecies       <- apply(as.matrix(distrib),1,sum)
   endemicSpecies[which(endemicSpecies != 1)] = 0
   endemicityMatrix     <-  endemicSpecies*distrib
-  sumEndemicityMatrix  <- apply(endemicityMatrix,2,sum) 
+  sumEndemicityMatrix  <- apply(as.matrix(endemicityMatrix),2,sum) 
   resultados$endem     <-  resultados$rich*sumEndemicityMatrix
   
   
