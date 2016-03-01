@@ -2,13 +2,23 @@
 % Please edit documentation in R/Multi.Jack.R
 \name{Multi.Jack}
 \alias{Multi.Jack}
-\title{Jack-knife indices in n topologies  m times}
+\title{Jack-knife indices in n topologies m times.}
 \usage{
 Multi.Jack(MultiData = MultiData, times = 100, jtip = 0, jtopol = 0)
 }
-\description{
-The function calculates the indices values for a MultiData list  m (=replicates) times 
+\arguments{
+\item{MultiData}{}
 
-Returns the rankings
+\item{times}{}
+
+\item{jtip}{is the number of terminals, an integer.}
+
+\item{jtopol}{is the number of topologies, an integer.}
+}
+\description{
+The function calculates the indices values for a MultiData list  m (=replicates) times
+}
+\author{
+Miranda-Esquivel Daniel R.
 }
 

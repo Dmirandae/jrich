@@ -1,14 +1,23 @@
-
 #'
 #' @title Children of a node.
 #'
 #' @description Get the children of a node in a tree.
 #'
-#' @param tree is a single tree
-#' @param node is an integer, representing the node in APE notation
+#' @param tree is a single tree with n terminals, an ape phylo object.
+#' 
+#' @param node representing the node in APE notation,is an integer.
 #'
 #' @return The children nodes of the internal node; in most cases, two integers.
 #'
+#'
+#'
+#'@author Miranda-Esquivel Daniel R.
+#'
+#'
+
+
+
+
 
 
 Children <-

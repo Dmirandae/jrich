@@ -1,12 +1,13 @@
 #'
 #' @title I index value for a single topology.
 #'
-#' This function assigns the same weight to sister clades
-#' (see Van-Wright et al., 1981). 
-#' The input tree is reordered in post order.
+#' @description This function assigns the same weight to sister clades
+#' (see Van-Wright et al., 1981). The input tree is reordered in post order.
 #' 
-#' Returns a vector with weights.
+#' @param tree is a single tree with n terminals, an ape phylo object.
 #'
+#' @return Returns a vector with weights.
+#' 
 #' @examples
 #'  library(jrich)
 #'  data(tree)
@@ -15,6 +16,15 @@
 #'  newTree              <- tree
 #'  newTree$tip.label    <- indexi
 #'  plot(newTree)
+#'  
+#'
+#'
+#'@author Miranda-Esquivel Daniel R.
+#'
+#'
+
+
+
 
 
 IndexI <- function(tree=tree) {
@@ -26,11 +36,6 @@ IndexI <- function(tree=tree) {
 
 ## masked functions
 
-	#'
-	#' All the sisters of a node
-	#' 
-	#' Input: a tree and a node
-	#' Returns the list of sisters
 
 	Sisters <-
 		function (tree=tree, node=node) {
@@ -45,10 +50,6 @@ IndexI <- function(tree=tree) {
 	}
 
 
-	#' Are all the sisters of a node tips?
-	#'
-	#' Input: a tree and a node
-	#' Return a boolean
 
 	Sisters.tip <-
 		function (tree=tree, node=node) {
@@ -67,10 +68,6 @@ IndexI <- function(tree=tree) {
 
 
 
-	#' Weight the tips that are sisters of tips
-	#'
-	#' Input: a tree and a table of weights
-	#' Returns a distribution
 	#
 
 	Weight.sister.tips <-
@@ -93,10 +90,6 @@ IndexI <- function(tree=tree) {
 	}
 
 
-	#' Weight the tips that are sisters of internal nodes
-	#'
-	#' Input: a tree and a table of weights
-	#' Returns a distribution
 	#
 
 	Weight.other.nodes <-

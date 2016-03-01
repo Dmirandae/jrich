@@ -3,10 +3,30 @@
 #' Jack-knife indices in a single topology m times and evaluates a success rule.
 #'
 #' @description 
-#' The function jack-knifes the terminals jtip (=replicates) times, and calculates the number of times 
+#' The function Jack-knifes the terminals jtip (=replicates) times, and calculates the number of times 
 #' that each replicate recovers the same initial initial.Rankinging (X:Y positions), by default success is 1:3 positions.
 #' The function returns the number of hits.
 #'
+#' @param tree is a single tree with n terminals, an ape phylo object.
+#' 
+#' @param distrib species distributions in n areas, a data.frame
+#' 
+#' @param jtip is the number of terminals, an integer.
+#' 
+#' @param replicates is the number of replicates, an integer.
+#' 
+#' @param success the measure of the success, a vector.
+#' 
+#' @return The number of hits
+#'
+#'
+#'
+#'@author Miranda-Esquivel Daniel R.
+#'
+#'
+
+
+
 
 Best.Index <-
 function (tree = tree, distrib = distrib, jtip = jtip,

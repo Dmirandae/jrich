@@ -1,12 +1,26 @@
-
 #'
-#' Jack-knife indices in n topologies one time
+#' @title Jack-knife indices in n topologies one time
 #'
-#' The function calculates the indices values for a MultiData list 
+#' @description The function calculates the indices values for a MultiData list 
 #' one time. 
 #'
-#' Returns the indices values
+#' @param MultiData
 #'
+#' @param jtip is the number of terminals, an integer.
+#'
+#' @param jtopol is the number of topologies, an integer.
+#' 
+#' @return Returns the indices values.
+#'
+#'
+#'
+#'@author Miranda-Esquivel Daniel R.
+#'
+#'
+
+
+
+
 
 
 Multi.Index.Calc <-

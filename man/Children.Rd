@@ -7,14 +7,17 @@
 Children(tree = tree, node = node)
 }
 \arguments{
-\item{tree}{is a single tree}
+\item{tree}{is a single tree with n terminals, an ape phylo object.}
 
-\item{node}{is an integer, representing the node in APE notation}
+\item{node}{representing the node in APE notation,is an integer.}
 }
 \value{
 The children nodes of the internal node; in most cases, two integers.
 }
 \description{
 Get the children of a node in a tree.
+}
+\author{
+Miranda-Esquivel Daniel R.
 }
 

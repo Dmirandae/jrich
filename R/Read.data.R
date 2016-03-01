@@ -1,6 +1,18 @@
 #'
-#' Read distributions as a csv with two columns species and area
-#' 
+#' @title Read distributions as a csv.
+#'
+#' @description Read distributions as a csv with two columns species and area
+#'
+#' @param data.file archivo csv de entrada.
+#'   
+#'
+#'
+#'@author Miranda-Esquivel Daniel R.
+#'
+#'
+
+
+
 
 Read.Data <-
 function (data.File) {

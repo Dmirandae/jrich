@@ -2,15 +2,19 @@
 % Please edit documentation in R/IndexI.R
 \name{IndexI}
 \alias{IndexI}
-\title{I index value for a single topology.
-
-This function assigns the same weight to sister clades
-(see Van-Wright et al., 1981). 
-The input tree is reordered in post order.
-
-Returns a vector with weights.}
+\title{I index value for a single topology.}
 \usage{
 IndexI(tree = tree)
+}
+\arguments{
+\item{tree}{is a single tree with n terminals, an ape phylo object.}
+}
+\value{
+Returns a vector with weights.
+}
+\description{
+This function assigns the same weight to sister clades
+(see Van-Wright et al., 1981). The input tree is reordered in post order.
 }
 \examples{
  library(jrich)
@@ -20,22 +24,11 @@ IndexI(tree = tree)
  newTree              <- tree
  newTree$tip.label    <- indexi
  plot(newTree)
+ 
 
-All the sisters of a node
 
-Input: a tree and a node
-Returns the list of sisters
-Are all the sisters of a node tips?
-
-Input: a tree and a node
-Return a boolean
-Weight the tips that are sisters of tips
-
-Input: a tree and a table of weights
-Returns a distribution
-Weight the tips that are sisters of internal nodes
-
-Input: a tree and a table of weights
-Returns a distribution
+}
+\author{
+Miranda-Esquivel Daniel R.
 }
 

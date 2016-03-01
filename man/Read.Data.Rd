@@ -2,11 +2,17 @@
 % Please edit documentation in R/Read.data.R
 \name{Read.Data}
 \alias{Read.Data}
-\title{Read distributions as a csv with two columns species and area}
+\title{Read distributions as a csv.}
 \usage{
 Read.Data(data.File)
 }
+\arguments{
+\item{data.file}{archivo csv de entrada.}
+}
 \description{
 Read distributions as a csv with two columns species and area
+}
+\author{
+Miranda-Esquivel Daniel R.
 }
 

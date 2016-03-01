@@ -4,15 +4,15 @@
 \name{tree}
 \alias{tree}
 \title{Figure 1 tree}
-\format{An object of class \code{phylo} of length 3.}
+\format{An APE object, class phylo. A tree dataset with five terminals.}
 \usage{
 tree
 }
 \description{
-An APE object, class phylo. A tree dataset with five terminals.
+A tree with five terminals.
 }
-\details{
-A phylo object. A tree with five terminals.
+\author{
+Miranda-Esquivel Daniel R.
 }
 \keyword{datasets}
 

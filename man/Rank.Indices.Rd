@@ -2,14 +2,21 @@
 % Please edit documentation in R/Rank.Indices.R
 \name{Rank.Indices}
 \alias{Rank.Indices}
-\title{Rank indices according to the areas' absolute position.
-If the index value is empty, the function assigns a dummy position "X0X"}
+\title{Rank indices according to the areas' absolute position.}
 \usage{
 Rank.Indices(index.Value = index.Value)
 }
-\description{
-Input a data matrix with the index values
-Return a table with the dreacins order of the areas
+\arguments{
+\item{index.value}{enter the table with these values.}
+}
+\value{
+a table with the decreasing order of the areas
 It presents the ties alphabetically
+}
+\description{
+If the index value is empty, the function assigns a dummy position "X0X"
+}
+\author{
+Miranda-Esquivel Daniel R.
 }
 

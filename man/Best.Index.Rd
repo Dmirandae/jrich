@@ -10,15 +10,49 @@ Best.Index(tree = tree, distrib = distrib, jtip = jtip,
 Best.Index(tree = tree, distrib = distrib, jtip = jtip,
   replicates = replicates, success = c(success))
 }
+\arguments{
+\item{tree}{is a single tree with n terminals, an ape phylo object.}
+
+\item{distrib}{species distributions in n areas, a data.frame}
+
+\item{jtip}{is the number of terminals, an integer.}
+
+\item{replicates}{is the number of replicates, an integer.}
+
+\item{success}{the measure of the success, a vector.}
+
+\item{tree}{is a single tree with n terminals, an ape phylo object.}
+
+\item{distrib}{species distributions in n areas, a data.frame}
+
+\item{jtip}{is the number of terminals, an integer.}
+
+\item{replicates}{is the number of replicates, an integer.}
+
+\item{success}{the measure of the success, a vector.}
+}
+\value{
+The number of hits
+
+The function returns the success that correspond to  
+obtain the same ranking for X,Y positions, established as the vector
+success (by default success)).
+
+The function returns the success that correspond to  
+obtain the same ranking for X,Y positions, established as the vector
+success (by default success))
+}
 \description{
-The function jack-knifes the terminals jtip (=replicates) times, and calculates the number of times 
+The function Jack-knifes the terminals jtip (=replicates) times, and calculates the number of times 
 that each replicate recovers the same initial initial.Rankinging (X:Y positions), by default success is 1:3 positions.
 The function returns the number of hits.
 
 The function jack-knifes the terminals and
-calculates the indices value m (=replicates) times.  
-The function returns the success that correspond to  
-obtain the same ranking for X,Y positions, established as the vector
-success (by default success)).
+calculates the indices value m (=replicates) times.
+}
+\author{
+Miranda-Esquivel Daniel R.
+
+Miranda-Esquivel Daniel R.
 }
 

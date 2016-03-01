@@ -11,5 +11,8 @@ distribution
 \description{
 A data frame with five species distributions in eight areas.
 }
+\author{
+Miranda-Esquivel Daniel R.
+}
 \keyword{datasets}
 

@@ -1,10 +1,21 @@
 #'
-#' Rank indices according to the areas' absolute position.
-#' If the index value is empty, the function assigns a dummy position "X0X"
+#' @title Rank indices according to the areas' absolute position.
+#' 
+#' @description If the index value is empty, the function assigns a dummy position "X0X"
 #'
-#' Input a data matrix with the index values
-#' Return a table with the dreacins order of the areas
-#' It presents the ties alphabetically
+#' @param index.value enter the table with these values.
+#' 
+#' @return a table with the decreasing order of the areas
+#' It presents the ties alphabetically 
+#' 
+#'
+#'
+#'@author Miranda-Esquivel Daniel R.
+#'
+#'
+
+
+
 
 Rank.Indices <-
 function (index.Value=index.Value) {

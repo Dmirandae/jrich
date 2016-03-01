@@ -25,4 +25,7 @@ ConsensusTree <- wconsensus (trees, cutvalue = 0.65)
 calculates  the weights and collapses the maj rule consensus using
 a cut value of 0.65
 }
+\author{
+Miranda-Esquivel Daniel R.
+}
 

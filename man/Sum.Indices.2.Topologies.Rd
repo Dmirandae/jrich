@@ -6,8 +6,19 @@
 \usage{
 Sum.Indices.2.Topologies(indices1 = indices1, indices2 = indices2)
 }
+\arguments{
+\item{indices1}{}
+
+\item{indices2}{}
+}
+\value{
+a single table with the sum of the two indices.
+}
 \description{
-Input: two tables with indices
-Returns a single table with the sum
+You input two tables with indices 
+and it function returns a single table with the sum.
+}
+\author{
+Miranda-Esquivel Daniel R.
 }
 

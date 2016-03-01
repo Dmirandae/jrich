@@ -3,8 +3,8 @@
 #' Indices values and Jack-knife indices for a single topology.
 #'
 #' @description
-#' The function calculates standard and terminal jack-knifed indices I and W 
-#' [see Miranda-Esquivel 2016], along with Posadas et al. 2001 modifications.
+#' The funtion calculates standard and terminal jack-knifed indices I and W 
+#' [see Miranda-Esquivel 2015], along with Posadas et al. 2001 modifications.
 #' 
 #' @param tree is a single tree with n terminals, an ape phylo object.
 #' 
@@ -24,9 +24,35 @@
 #' Standarized by the sum of indices in the distribution
 #' Calculate.Index(tree=tree, distrib = distribution, verbose=TRUE, standard = "distribution")
 #' 
-#' ## Standarized by the sum of indices in the tree (as figure 1 in Miranda-Esquivel 2016)
+#' ## Standarized by the sum of indices in the tree (as figure 1 in Miranda-Esquivel 2015)
 #' Calculate.Index(tree=tree, distrib = distribution, verbose=TRUE, standard = "tree")
 #' 
+#'
+#' Indices values and Jack-knife indices for a single topology.
+#'
+#' The funtion calculates standard and terminal jack-knifed indices I and W 
+#' [see Miranda-Esquivel 2015], along with Posadas et al. 2001 modifications.
+#'
+#' @examples
+#' library(jrich)
+#' data(tree)
+#' data(distribution)
+#' ##
+#' ## Standarized by the sum of indices in the distribution
+#' Calculate.Index(tree=tree, distrib = distribution, verbose=TRUE, standard = "distribution")
+#' 
+#' ##
+#' ## Standarized by the sum of indices in the tree (as figure 1 in Miranda-Esquivel 2015)
+#' Calculate.Index(tree=tree, distrib = distribution, verbose=TRUE, standard = "tree")
+#' 
+#'
+#'
+#'@author Miranda-Esquivel Daniel R.
+#'
+#'
+
+
+
 
 
 Calculate.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose = TRUE, standard = "distribution") {

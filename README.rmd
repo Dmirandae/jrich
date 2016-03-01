@@ -2,7 +2,7 @@
 title: "A Jrich worked example"
 author: "D Miranda E"
 date: "29/02/2016"
-output: pdf_document
+output: html_document
 ---
 
 These functions calculate the taxonomic measures presented in Posadas et al 2001 and in Miranda-Esquivel 2016 to introduce Jack-knife re-sampling in evolutionary distinctiveness prioritization analysis. This analysis is a way to evaluate the support of the ranking of the areas to modifications in the data used, and therefore quantifying the persistence of a given area in a conservation analysis.
@@ -102,7 +102,6 @@ Also, we could read the example distribution.
 ```{r}
 
 data(distribution)
-
 
 ```
 

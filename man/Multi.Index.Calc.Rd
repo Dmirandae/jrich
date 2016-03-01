@@ -6,11 +6,21 @@
 \usage{
 Multi.Index.Calc(MultiData = MultiData, jtip = 0, jtopol = 0)
 }
+\arguments{
+\item{MultiData}{}
+
+\item{jtip}{is the number of terminals, an integer.}
+
+\item{jtopol}{is the number of topologies, an integer.}
+}
+\value{
+Returns the indices values.
+}
 \description{
 The function calculates the indices values for a MultiData list 
 one time.
 }
-\details{
-Returns the indices values
+\author{
+Miranda-Esquivel Daniel R.
 }
 

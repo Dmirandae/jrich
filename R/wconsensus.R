@@ -1,16 +1,4 @@
-#
 #' @title   Wconsensus 
-# status     :   beta version
-# Copyright  :   GPL 3.x
-# Author     :   Daniel Rafael Miranda Esquivel
-# email      :   dmiranda@uis.edu.co
-# updated    :   2014 Sep 25
-#
-#
-
-#
-# Main function
-#
 #' @description wconsensus calculates the weighted consensus as presented in Sharkey et al. (2013)
 #' The initial trees are hierarchically and nested clustered, according to common nodes
 #' and weighted in accordance to the clusters created.
@@ -23,14 +11,34 @@
 #'
 #' ConsensusTree <- wconsensus (trees)
 #' calculates  the weights and collapses the maj rule consensus
-
 #' ConsensusTree <- wconsensus (trees, collapse = FALSE)
 #' calculates the weights BUT does not collapse the maj rule consensus
-
 #' ConsensusTree <- wconsensus (trees, cutvalue = 0.65)
 #' calculates  the weights and collapses the maj rule consensus using
 #' a cut value of 0.65
 #'
+#'
+#'
+#'@author Miranda-Esquivel Daniel R.
+#'
+#'
+
+
+
+#
+# status     :   beta version
+# Copyright  :   GPL 3.x
+# Author     :   Daniel Rafael Miranda Esquivel
+# email      :   dmiranda@uis.edu.co
+# updated    :   2014 Sep 25
+#
+#
+
+#
+# Main function
+#
+
+
 
 
 wconsensus <- function (InitialTrees, collapse = TRUE, 
