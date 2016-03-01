@@ -1,0 +1,442 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jrich by Dmirandae</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Jrich</h1>
+        <p>These functions calculate the taxonomic measures presented in Posadas et al 2001 and in Miranda-Esquivel 2016.</p>
+
+        <p class="view"><a href="https://github.com/Dmirandae/jrich">View the Project on GitHub <small>Dmirandae/jrich</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/Dmirandae/jrich/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Dmirandae/jrich/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Dmirandae/jrich">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p>These functions calculate the taxonomic measures presented in Posadas et al 2001 and in Miranda-Esquivel 2016 to introduce Jack-knife re-sampling in evolutionary distinctiveness prioritization analysis. This analysis is a way to evaluate the support of the ranking of the areas to modifications in the data used, and therefore quantifying the persistence of a given area in a conservation analysis.</p>
+
+<p>For further information, you could read <a href="http://link.springer.com/chapter/10.1007/978-3-319-22461-9_11">http://link.springer.com/chapter/10.1007/978-3-319-22461-9_11</a></p>
+
+<blockquote>
+<h3>
+<a id="1-an-example-with-a-single-topology-and-distribution-to-reproduce-figure-1-in-miranda-esquivel-2016" class="anchor" href="#1-an-example-with-a-single-topology-and-distribution-to-reproduce-figure-1-in-miranda-esquivel-2016" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>1.</strong> An example with a single topology and distribution to reproduce Figure 1 in Miranda-Esquivel (2016)</h3>
+</blockquote>
+
+<p>First of all, we remove everything from the R environment.</p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c">#</span>
+rm(<span class="pl-v">list</span><span class="pl-k">=</span>ls())
+</pre></div>
+
+<p>And close the graphic devices, if there is any.</p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c">#</span>
+<span class="pl-k">if</span> (dev.cur()<span class="pl-k">!=</span><span class="pl-c1">1</span>){dev.off()}
+</pre></div>
+
+<p>Now, we get the latest version of the library, from GitHub.</p>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-c">#library("devtools")</span>
+
+<span class="pl-c">#install_github("Dmirandae/jrich")</span>
+</pre></div>
+
+<p>We load the library before proceeding.</p>
+
+<div class="highlight highlight-source-r"><pre>
+library(<span class="pl-smi">jrich</span>)
+</pre></div>
+
+<p>ans set working directory to the R Data (make sure you have changed it to your own directory).</p>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-c"># setwd("./myData/")</span>
+
+</pre></div>
+
+<p>Now, we can read a tree from <code>figure1.tre</code>, which is written in Newick format or we can use directly the tree from the data file.</p>
+
+<p>To read a file form a file use:</p>
+
+<div class="highlight highlight-source-r"><pre>
+
+<span class="pl-smi">tree.figure1</span> <span class="pl-k">&lt;-</span> read.tree (<span class="pl-s"><span class="pl-pds">"</span>yourTree.tre<span class="pl-pds">"</span></span>)
+</pre></div>
+
+<p>Or, upload the data set, using the <code>data</code> funtion.</p>
+
+<div class="highlight highlight-source-r"><pre>
+ data(<span class="pl-smi">tree</span>)
+</pre></div>
+
+<p>We can plot the tree.</p>
+
+<div class="highlight highlight-source-r"><pre>
+plot(<span class="pl-smi">tree</span>, <span class="pl-v">main</span><span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Figure 1. Area Cladogram<span class="pl-pds">"</span></span>)
+</pre></div>
+
+<p>We can also read distributions using the species per area format. The distributions could be a csv file with several features: Each line has a species name and an area, and multiple areas for the same species means a widespread taxon in multiple lines.</p>
+
+<p>The following function creates a data frame for the species distributions.</p>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-smi">distrib.figure1</span> <span class="pl-k">&lt;-</span> Read.Data(<span class="pl-s"><span class="pl-pds">"</span>figure1.csv<span class="pl-pds">"</span></span>)
+
+head(<span class="pl-smi">distrib.figure1</span>)
+</pre></div>
+
+<p>Also, we could read the example distribution.</p>
+
+<div class="highlight highlight-source-r"><pre>
+data(<span class="pl-smi">distribution</span>)
+</pre></div>
+
+<p>We run the initial Index calculation, with a verbose output.</p>
+
+<div class="highlight highlight-source-r"><pre>library(<span class="pl-smi">jrich</span>)
+
+<span class="pl-smi">initial.Values</span> <span class="pl-k">&lt;-</span> Calculate.Index(<span class="pl-v">tree</span><span class="pl-k">=</span><span class="pl-smi">tree</span>, <span class="pl-v">distrib</span> <span class="pl-k">=</span> <span class="pl-smi">distribution</span>, <span class="pl-v">verbose</span><span class="pl-k">=</span><span class="pl-c1">T</span>)
+
+<span class="pl-smi">initial.Values</span> 
+</pre></div>
+
+<p>Note that the figures for <strong>Is/Ws</strong> indices here are different from Figure 1 in Miranda-Esquivel 2016, as here are re-scaled to sum 1, but the proportions are exactly the same.</p>
+
+<p>To obtain the same figures for <strong>Is/Ws</strong> indices as in Figure 1, we must use this code: </p>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-smi">figure1.Values</span> <span class="pl-k">&lt;-</span>  Calculate.Index(<span class="pl-v">tree</span><span class="pl-k">=</span><span class="pl-smi">tree</span>, <span class="pl-v">distrib</span> <span class="pl-k">=</span> <span class="pl-smi">distribution</span>, <span class="pl-v">verbose</span><span class="pl-k">=</span><span class="pl-c1">F</span>, <span class="pl-v">standard</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>tree<span class="pl-pds">"</span></span>)
+
+<span class="pl-smi">figure1.Values</span>
+
+all.equal(<span class="pl-smi">initial.Values</span>,<span class="pl-smi">figure1.Values</span>)
+</pre></div>
+
+<p><strong>1.</strong> Correlations between values</p>
+
+<p>Plot the initial Values for the index that "explains" the most with this line:</p>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-smi">correlations</span> <span class="pl-k">&lt;-</span> cor(<span class="pl-smi">initial.Values</span>[,<span class="pl-c1">2</span><span class="pl-k">:</span><span class="pl-c1">10</span>],<span class="pl-smi">initial.Values</span>[,<span class="pl-c1">2</span><span class="pl-k">:</span><span class="pl-c1">10</span>])
+</pre></div>
+
+<p>Do not forget using the following code to avoid the "autocorrelation".</p>
+
+<div class="highlight highlight-source-r"><pre>
+diag(<span class="pl-smi">correlations</span>) <span class="pl-k">&lt;-</span> <span class="pl-c1">0.0</span>
+</pre></div>
+
+<p>Now we can determine the 'Best' descriptor:</p>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-smi">best.Index</span> <span class="pl-k">&lt;-</span> which.max(apply(<span class="pl-smi">correlations</span>,<span class="pl-c1">2</span>,<span class="pl-smi">sum</span>))
+
+<span class="pl-smi">best.Index</span>
+</pre></div>
+
+<p>With the following instruction we can get the name of index that displays the highest value,
+and the row of the column <strong>rich</strong> in which the object is found. </p>
+
+<p>Keep in mind that richness in not a good predictor for all indices. </p>
+
+<div class="highlight highlight-source-r"><pre>
+which(abs(<span class="pl-smi">correlations</span>[,<span class="pl-s"><span class="pl-pds">"</span>rich<span class="pl-pds">"</span></span>])<span class="pl-k">==</span>max(abs(<span class="pl-smi">correlations</span>[,<span class="pl-s"><span class="pl-pds">"</span>rich<span class="pl-pds">"</span></span>])))
+</pre></div>
+
+<p>To plot aesthetic graphics, load the library <code>ggplot2</code>.</p>
+
+<div class="highlight highlight-source-r"><pre>
+library(<span class="pl-smi">ggplot2</span>)
+</pre></div>
+
+<p><strong>2.</strong> The index that "explains the most", without resampling is:</p>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-smi">best.Index</span> <span class="pl-k">&lt;-</span>   which.max(apply(<span class="pl-smi">correlations</span>,<span class="pl-c1">2</span>,<span class="pl-smi">sum</span>))
+
+<span class="pl-smi">best.Index</span>
+
+qplot(<span class="pl-smi">initial.Values</span><span class="pl-k">$</span><span class="pl-smi">area</span>,<span class="pl-smi">initial.Values</span>[,names(<span class="pl-smi">best.Index</span>)], <span class="pl-v">xlab</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Areas<span class="pl-pds">"</span></span>, 
+      <span class="pl-v">ylab</span> <span class="pl-k">=</span>paste(names(<span class="pl-smi">best.Index</span>),<span class="pl-s"><span class="pl-pds">"</span> values<span class="pl-pds">"</span></span>), <span class="pl-v">main</span> <span class="pl-k">=</span> paste(<span class="pl-s"><span class="pl-pds">"</span>Figure 2. Values of the most informative index: <span class="pl-pds">"</span></span>,names(<span class="pl-smi">best.Index</span>),<span class="pl-s"><span class="pl-pds">"</span> Index<span class="pl-pds">"</span></span>))
+</pre></div>
+
+<p>In this example, Areas <strong>A / F / G / H</strong> have the same ranking, as area <strong>A</strong> harbors species <strong>I</strong>, while areas <strong>F / G / H</strong> have the highest absolute richness.</p>
+
+<p>We run the analysis with a single Jackknife replicate with a jtip value of 0.5. </p>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-smi">jack.Values</span> <span class="pl-k">&lt;-</span>  Calculate.Index(<span class="pl-v">tree</span><span class="pl-k">=</span><span class="pl-smi">tree</span>, <span class="pl-v">distrib</span> <span class="pl-k">=</span> <span class="pl-smi">distribution</span>,<span class="pl-v">jtip</span> <span class="pl-k">=</span> <span class="pl-c1">0.5</span>)
+</pre></div>
+
+<p>The absolute difference between these two outputs can be computed with this instruction:</p>
+
+<div class="highlight highlight-source-r"><pre>
+all.equal(<span class="pl-smi">initial.Values</span>, <span class="pl-smi">jack.Values</span>)
+</pre></div>
+
+<p><strong>3.</strong> But a single replicate is not interesting, therefore we can repeat the process 100 times, using two approaches:</p>
+
+<ul>
+<li>*<em>3.1 *</em>Jackknifing with a jtip value of 0.5, 100 replicates, using the <code>Calculate.Index</code> function.</li>
+</ul>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-smi">jack.Ranking.100</span> <span class="pl-k">&lt;-</span> <span class="pl-k">list</span>()
+<span class="pl-k">for</span> (<span class="pl-smi">i</span> <span class="pl-k">in</span> <span class="pl-c1">1</span><span class="pl-k">:</span><span class="pl-c1">100</span>){
+  <span class="pl-c">## if you want to get the output number replicate, uncomment this line:</span>
+  <span class="pl-c">##print(paste("replicate #",i), )</span>
+
+  <span class="pl-smi">jack.Ranking.100</span>[[<span class="pl-smi">i</span>]] <span class="pl-k">&lt;-</span>  as.data.frame(Rank.Indices(Calculate.Index(<span class="pl-v">tree</span><span class="pl-k">=</span><span class="pl-smi">tree</span>, <span class="pl-v">distrib</span> <span class="pl-k">=</span> <span class="pl-smi">distribution</span>, <span class="pl-v">verbose</span><span class="pl-k">=</span><span class="pl-c1">FALSE</span>,<span class="pl-v">jtip</span> <span class="pl-k">=</span> <span class="pl-c1">0.5</span>)))
+}
+</pre></div>
+
+<ul>
+<li>*<em>3.2 *</em>Comparing the whole ranking for the best index, 100 times.</li>
+</ul>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-smi">initial.Ranking</span> <span class="pl-k">&lt;-</span>  as.data.frame(Rank.Indices(<span class="pl-smi">initial.Values</span>))
+
+<span class="pl-smi">jack.Ranking.100.comparison</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">NULL</span>
+
+<span class="pl-k">for</span> (<span class="pl-smi">i</span> <span class="pl-k">in</span> <span class="pl-c1">1</span><span class="pl-k">:</span><span class="pl-c1">100</span>){
+
+  <span class="pl-k">if</span>(<span class="pl-k">!</span>all(<span class="pl-smi">jack.Ranking.100</span>[[<span class="pl-smi">i</span>]][,<span class="pl-smi">best.Index</span>] <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">"</span>X0X<span class="pl-pds">"</span></span>)){
+    <span class="pl-smi">jack.Ranking.100.comparison</span>[<span class="pl-smi">i</span>] <span class="pl-k">&lt;-</span> all.equal(<span class="pl-smi">initial.Ranking</span>[,<span class="pl-smi">best.Index</span>], 
+                                                  <span class="pl-smi">jack.Ranking.100</span>[[<span class="pl-smi">i</span>]][,<span class="pl-smi">best.Index</span>])  
+  }<span class="pl-k">else</span> <span class="pl-smi">jack.Ranking.100.comparison</span>[<span class="pl-smi">i</span>] <span class="pl-k">&lt;-</span> <span class="pl-c1">0</span>
+}
+</pre></div>
+
+<p>Get the number of hits or the extent of the Jackknife replicate to recover the initial ranking:</p>
+
+<div class="highlight highlight-source-r"><pre>
+length(which(<span class="pl-smi">jack.Ranking.100.comparison</span><span class="pl-k">==</span><span class="pl-c1">TRUE</span>))
+</pre></div>
+
+<p>To estimate the error, we use this code:</p>
+
+<div class="highlight highlight-source-r"><pre>
+length(which(as.data.frame(<span class="pl-smi">jack.Ranking.100.comparison</span>)<span class="pl-k">!=</span><span class="pl-c1">TRUE</span>))
+</pre></div>
+
+<p>These two figures indicate that the best index is not <strong>I</strong>. As it is also important to estimate the error, we can use the following code to compute it.</p>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-smi">jack.Mismatch</span> <span class="pl-k">&lt;-</span> <span class="pl-smi">jack.Ranking.100.comparison</span>[<span class="pl-smi">jack.Ranking.100.comparison</span><span class="pl-k">!=</span><span class="pl-c1">TRUE</span>]
+
+<span class="pl-smi">count.Jack.Mismatch</span> <span class="pl-k">&lt;-</span> gsub(<span class="pl-s"><span class="pl-pds">"</span> string mismatches<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,<span class="pl-smi">jack.Mismatch</span>)
+
+<span class="pl-smi">count.Jack.Mismatch</span> <span class="pl-k">&lt;-</span> as.numeric(<span class="pl-smi">count.Jack.Mismatch</span>) 
+</pre></div>
+
+<p>Plot the distribution of the error, not so bell-shaped.</p>
+
+<div class="highlight highlight-source-r"><pre>
+hist(sort(<span class="pl-smi">count.Jack.Mismatch</span>,<span class="pl-v">na.last</span> <span class="pl-k">=</span> <span class="pl-c1">NA</span>), <span class="pl-v">main</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Figure 3. Histogram of Error Distribution<span class="pl-pds">"</span></span>, <span class="pl-v">xlab</span><span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Jack Mistmatch count<span class="pl-pds">"</span></span>)
+</pre></div>
+
+<p><strong>4.</strong> A wrap to theprevious function, and evaluating the number of times we recovered 1/2/3 position in the ranking.</p>
+
+<p>Note that <code>Calculate.Index</code> recovers the index values while <code>Best.Index</code> recovers the ranking comparison.</p>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-smi">jack.figure1.jtip05.100replicates</span> <span class="pl-k">&lt;-</span> Best.Index(<span class="pl-v">tree</span><span class="pl-k">=</span><span class="pl-smi">tree</span>, <span class="pl-v">distrib</span> <span class="pl-k">=</span> <span class="pl-smi">distribution</span>, <span class="pl-v">jtip</span> <span class="pl-k">=</span> <span class="pl-c1">0.5</span>, <span class="pl-v">replicates</span> <span class="pl-k">=</span> <span class="pl-c1">50</span>, <span class="pl-v">success</span> <span class="pl-k">=</span> c(<span class="pl-c1">1</span><span class="pl-k">:</span><span class="pl-c1">2</span>))
+
+<span class="pl-smi">jack.figure1.jtip05.100replicates</span>
+
+<span class="pl-v">best.Index</span> <span class="pl-k">=</span> names(<span class="pl-smi">jack.figure1.jtip05.100replicates</span>)[c(which(<span class="pl-smi">jack.figure1.jtip05.100replicates</span> <span class="pl-k">==</span> max(<span class="pl-smi">jack.figure1.jtip05.100replicates</span>)))]</pre></div>
+
+<p><strong>W / Ws</strong> explains better than <strong>I</strong>, as they have a Jackknife value. In this context we can plot <strong>Ws</strong>.</p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-k">for</span> (<span class="pl-smi">i</span> <span class="pl-k">in</span> <span class="pl-c1">1</span><span class="pl-k">:</span>length(<span class="pl-smi">best.Index</span>)){
+
+print(<span class="pl-smi">best.Index</span>[<span class="pl-smi">i</span>])
+
+print(qplot(<span class="pl-smi">initial.Values</span><span class="pl-k">$</span><span class="pl-smi">area</span>,<span class="pl-smi">initial.Values</span>[,<span class="pl-smi">best.Index</span>[<span class="pl-smi">i</span>]], <span class="pl-v">xlab</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Areas<span class="pl-pds">"</span></span>, 
+      <span class="pl-v">ylab</span> <span class="pl-k">=</span>paste(<span class="pl-smi">best.Index</span>[<span class="pl-smi">i</span>],<span class="pl-s"><span class="pl-pds">"</span> values<span class="pl-pds">"</span></span>), <span class="pl-v">main</span> <span class="pl-k">=</span> paste(<span class="pl-s"><span class="pl-pds">"</span>Figure 4. <span class="pl-pds">"</span></span>,<span class="pl-smi">best.Index</span>[<span class="pl-smi">i</span>],<span class="pl-s"><span class="pl-pds">"</span> Index<span class="pl-pds">"</span></span>)))
+}</pre></div>
+
+<p>As it is shown in <strong>Figure 4.</strong>, areas <strong>F/G/H</strong> have a higher value as they have higher richness, but even so, the support is relatively low.</p>
+
+<blockquote>
+<h3>
+<a id="2-an-example-with-two-topologies-and-distributions" class="anchor" href="#2-an-example-with-two-topologies-and-distributions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>2.</strong> An example with two topologies and distributions</h3>
+</blockquote>
+
+<p>For this example, We will work with a tree and a distribution for an real taxon: <em>Puranius</em> (These two files could be found in in the data directory). </p>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-smi">tree.Puranius</span> <span class="pl-k">&lt;-</span> read.tree (<span class="pl-s"><span class="pl-pds">"</span>puranius.tre<span class="pl-pds">"</span></span>)
+
+<span class="pl-smi">distrib.Puranius</span> <span class="pl-k">&lt;-</span> Read.Data (<span class="pl-s"><span class="pl-pds">"</span>puranius.csv.gz<span class="pl-pds">"</span></span>)
+</pre></div>
+
+<p>Now we will assign a list to the object <code>data.Puranius</code> in order to join the tree and the distribution, which could certainly be made with a function as well. However, I prefer this approach. </p>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-smi">data.Puranius</span>  <span class="pl-k">&lt;-</span> <span class="pl-k">list</span>()
+
+<span class="pl-smi">data.Puranius</span>[[<span class="pl-c1">1</span>]] <span class="pl-k">&lt;-</span> <span class="pl-smi">tree.Puranius</span> 
+
+<span class="pl-smi">data.Puranius</span>[[<span class="pl-c1">2</span>]] <span class="pl-k">&lt;-</span> <span class="pl-smi">distrib.Puranius</span>
+
+head(<span class="pl-smi">data.Puranius</span>)
+</pre></div>
+
+<p>We will proceed just as we did for the first Taxon, thence we got a tree and a distribution for another Taxon: <em>Janus</em>.</p>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-smi">tree.Janus</span> <span class="pl-k">&lt;-</span> read.tree (<span class="pl-s"><span class="pl-pds">"</span>Janus.tre<span class="pl-pds">"</span></span>)
+
+<span class="pl-smi">distrib.Janus</span> <span class="pl-k">&lt;-</span> Read.Data(<span class="pl-s"><span class="pl-pds">"</span>Janus.csv.gz<span class="pl-pds">"</span></span>)
+
+<span class="pl-smi">data.Janus</span>  <span class="pl-k">&lt;-</span> <span class="pl-k">list</span>()
+
+<span class="pl-smi">data.Janus</span>[[<span class="pl-c1">1</span>]] <span class="pl-k">&lt;-</span> <span class="pl-smi">tree.Janus</span>
+
+<span class="pl-smi">data.Janus</span>[[<span class="pl-c1">2</span>]] <span class="pl-k">&lt;-</span> <span class="pl-smi">distrib.Janus</span>
+
+<span class="pl-smi">data.Janus</span></pre></div>
+
+<p>The following code creates a list to handle multiple datasets.
+In this case, the list <code>Multitaxon1</code> contains two objects.</p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-smi">Multitaxon1</span> <span class="pl-k">&lt;-</span> <span class="pl-k">list</span>()
+
+<span class="pl-smi">Multitaxon1</span>[[<span class="pl-c1">1</span>]] <span class="pl-k">&lt;-</span> <span class="pl-smi">data.Janus</span>
+
+<span class="pl-smi">Multitaxon1</span>[[<span class="pl-c1">2</span>]] <span class="pl-k">&lt;-</span> <span class="pl-smi">data.Puranius</span>
+</pre></div>
+
+<p>The function <code>Multi.Index.Calc</code> calculates indices values for a MultiData list. For this case, it computes the Initial ranking for <code>Multitaxon1</code> with default values. This action is performed just once.</p>
+
+<div class="highlight highlight-source-r"><pre>
+data(<span class="pl-smi">Multitaxon1</span>)
+
+<span class="pl-smi">initial.Values.Multi</span> <span class="pl-k">&lt;-</span>  Multi.Index.Calc(<span class="pl-smi">Multitaxon1</span>)
+</pre></div>
+
+<p>Before plotting the initial Values for the Index that explains the most, make sure that the library <code>ggplot2</code> is loaded.</p>
+
+<div class="highlight highlight-source-r"><pre>library(<span class="pl-smi">ggplot2</span>)</pre></div>
+
+<p><strong>1.</strong> Correlations between values</p>
+
+<p>Plotting as example, the index value that explains the most is:</p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-smi">correlations.Multi</span> <span class="pl-k">&lt;-</span>  cor(<span class="pl-smi">initial.Values.Multi</span>[,<span class="pl-c1">2</span><span class="pl-k">:</span><span class="pl-c1">10</span>], <span class="pl-smi">initial.Values.Multi</span>[,<span class="pl-c1">2</span><span class="pl-k">:</span><span class="pl-c1">10</span>])</pre></div>
+
+<p>To avoid the highest "autocorrelation", use this line:</p>
+
+<div class="highlight highlight-source-r"><pre>diag(<span class="pl-smi">correlations.Multi</span>) <span class="pl-k">&lt;-</span> <span class="pl-c1">0.0</span></pre></div>
+
+<p>In case we want to know the index that explains the most, use this code:</p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-smi">best.Index.Multi</span> <span class="pl-k">&lt;-</span>   which.max(apply(<span class="pl-smi">correlations.Multi</span>,<span class="pl-c1">2</span>,<span class="pl-smi">sum</span>))
+
+qplot(<span class="pl-smi">initial.Values.Multi</span><span class="pl-k">$</span><span class="pl-smi">area</span>,<span class="pl-smi">initial.Values.Multi</span>[,names(<span class="pl-smi">best.Index.Multi</span>)], <span class="pl-v">xlab</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Areas<span class="pl-pds">"</span></span>, <span class="pl-v">ylab</span> <span class="pl-k">=</span>names(<span class="pl-smi">best.Index.Multi</span>), <span class="pl-v">main</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Figure 5. Values of the Index that explains the most per area<span class="pl-pds">"</span></span>)</pre></div>
+
+<blockquote>
+<p><strong>2.</strong> A  delete experiment: Prob jtip jtopol 0.5 </p>
+</blockquote>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-smi">jack.Multi</span> <span class="pl-k">&lt;-</span>  Multi.Index.Calc(<span class="pl-smi">Multitaxon1</span>,<span class="pl-v">jtip</span> <span class="pl-k">=</span> <span class="pl-c1">0.5</span>,<span class="pl-v">jtopol</span> <span class="pl-k">=</span> <span class="pl-c1">0.5</span>) </pre></div>
+
+<p>See that the <code>jtopol</code> and <code>jtip</code> present the deleted proportions, and the two data frames are different.</p>
+
+<div class="highlight highlight-source-r"><pre>all.equal(<span class="pl-smi">jack.Multi</span>,<span class="pl-smi">initial.Values.Multi</span>)
+
+<span class="pl-smi">vector</span> <span class="pl-k">&lt;-</span>   which.max(apply(<span class="pl-smi">correlations</span>,<span class="pl-c1">2</span>,<span class="pl-smi">sum</span>))</pre></div>
+
+<p><strong>3.</strong> Jack Ranking Multitaxon 100 times</p>
+
+<p>This operation computes the index values and returns a data matrix. Diverse from the first method, it allows to perform this operation 100 times. The number of replicates can be easily modified, by changing the rank in for <code>(i in 1:100)</code>.</p>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-smi">jack.Ranking.100</span> <span class="pl-k">&lt;-</span> <span class="pl-k">list</span>()
+
+<span class="pl-k">for</span> (<span class="pl-smi">i</span> <span class="pl-k">in</span> <span class="pl-c1">1</span><span class="pl-k">:</span><span class="pl-c1">100</span>){
+  print(paste(<span class="pl-s"><span class="pl-pds">"</span>replicate #<span class="pl-pds">"</span></span>,<span class="pl-smi">i</span>))
+  <span class="pl-smi">jack.Ranking.100</span>[[<span class="pl-smi">i</span>]] <span class="pl-k">&lt;-</span>  as.data.frame(Rank.Indices(Multi.Index.Calc(<span class="pl-smi">Multitaxon1</span>,
+  <span class="pl-v">jtip</span> <span class="pl-k">=</span> <span class="pl-c1">0.5</span>,<span class="pl-v">jtopol</span> <span class="pl-k">=</span> <span class="pl-c1">0.5</span>)))
+}
+</pre></div>
+
+<p>We can get the ranking in the first run. It is only necessary to run this line:</p>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-smi">jack.Ranking.100</span>[[<span class="pl-c1">1</span>]][,<span class="pl-smi">vector</span>]
+</pre></div>
+
+<p><strong>4.</strong> Convert the initial values to a ranking</p>
+
+<p>The initial ranking for Multitaxon is assigned as follows:</p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-smi">initial.Ranking</span> <span class="pl-k">&lt;-</span>  as.data.frame(Rank.Indices(Multi.Index.Calc(<span class="pl-smi">Multitaxon1</span>)))
+
+
+<span class="pl-smi">initial.Ranking</span>[,<span class="pl-smi">vector</span>]</pre></div>
+
+<p><strong>5.</strong> Compare the whole ranking for the best index, 100 times.</p>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-smi">jack.Ranking.100.comparison</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">NULL</span>
+
+<span class="pl-k">for</span> (<span class="pl-smi">i</span> <span class="pl-k">in</span> <span class="pl-c1">1</span><span class="pl-k">:</span><span class="pl-c1">100</span>){
+  <span class="pl-smi">jack.Ranking.100.comparison</span>[<span class="pl-smi">i</span>] <span class="pl-k">&lt;-</span> all.equal(<span class="pl-smi">initial.Ranking</span>[,<span class="pl-smi">vector</span>], 
+                                              <span class="pl-smi">jack.Ranking.100</span>[[<span class="pl-smi">i</span>]][,<span class="pl-smi">vector</span>])
+}
+</pre></div>
+
+<p>Compute the number of hits or the Jackknife replicate ability to recover the initial ranking:</p>
+
+<div class="highlight highlight-source-r"><pre>length(which(<span class="pl-smi">jack.Ranking.100.comparison</span><span class="pl-k">==</span><span class="pl-c1">TRUE</span>))</pre></div>
+
+<p>As in the first example, get an estimation of the error.</p>
+
+<div class="highlight highlight-source-r"><pre>
+length(which(as.data.frame(<span class="pl-smi">jack.Ranking.100.comparison</span>)<span class="pl-k">!=</span><span class="pl-c1">TRUE</span>))
+</pre></div>
+
+<p>And with this instruction we can identify the type of error.</p>
+
+<div class="highlight highlight-source-r"><pre>
+<span class="pl-smi">jack.Mismatch</span> <span class="pl-k">&lt;-</span> <span class="pl-smi">jack.Ranking.100.comparison</span>[<span class="pl-smi">jack.Ranking.100.comparison</span><span class="pl-k">!=</span><span class="pl-c1">TRUE</span>]
+
+<span class="pl-smi">count.Jack.Mismatch</span> <span class="pl-k">&lt;-</span> gsub(<span class="pl-s"><span class="pl-pds">"</span> string mismatches<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,<span class="pl-smi">jack.Mismatch</span>)
+
+<span class="pl-smi">count.Jack.Mismatch</span> <span class="pl-k">&lt;-</span> as.numeric(<span class="pl-smi">count.Jack.Mismatch</span>) 
+</pre></div>
+
+<p>This code computes the distribution of the error, which will rather be bell shaped.</p>
+
+<div class="highlight highlight-source-r"><pre>
+hist(sort(<span class="pl-smi">count.Jack.Mismatch</span>), <span class="pl-v">main</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>Figure 6. Histogram of Error Distribution<span class="pl-pds">"</span></span>,  <span class="pl-v">xlab</span><span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Jack Mistmatch count<span class="pl-pds">"</span></span>)
+</pre></div>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Dmirandae">Dmirandae</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
