@@ -76,7 +76,7 @@ Or, upload the data set, using the `data` funtion.
 
 ```
 
-You might want to plot the tree.
+We can plot the tree.
 
 ```{r}
 
@@ -260,7 +260,7 @@ length(which(as.data.frame(jack.Ranking.100.comparison)!=TRUE))
 
 ```
 
-These two figures indicate that the best index is not __I__. As it is also important to estimate the error, you can use the following code to compute it.
+These two figures indicate that the best index is not __I__. As it is also important to estimate the error, we can use the following code to compute it.
 
 ```{r}
 
@@ -392,7 +392,7 @@ To avoid the highest "autocorrelation", use this line:
 diag(correlations.Multi) <- 0.0
 ```
 
-In case you want to know the index that explains the most, use this code:
+In case we want to know the index that explains the most, use this code:
 
 ```{r}
 best.Index.Multi <-   which.max(apply(correlations.Multi,2,sum))
@@ -430,7 +430,7 @@ for (i in 1:100){
 
 ```
 
-You can get the ranking in the first run. It is only necessary to run this line:
+We can get the ranking in the first run. It is only necessary to run this line:
 
 ```{r}
 
@@ -476,7 +476,7 @@ length(which(as.data.frame(jack.Ranking.100.comparison)!=TRUE))
 
 ```
 
-And with this instruction you can identify the type of error.
+And with this instruction we can identify the type of error.
 
 ```{r}
 
