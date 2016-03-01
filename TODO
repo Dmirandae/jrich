@@ -1,4 +1,0 @@
-There is an incongruence between Jack.Index that used jtip, while 
-Jack.Indices is using jtopol label. The discrepancy seems to be at 
-Jack.Indices, that is using the label: jtopol 
-Done oct 16 * 2014

@@ -1,19 +1,30 @@
 #'
+#' @title
 #' Indices values and Jack-knife indices for a single topology.
 #'
-#' The funtion calculates standard and terminal jack-knifed indices I and W 
-#' [see Miranda-Esquivel 2015], along with Posadas et al. 2001 modifications.
-#'
+#' @description
+#' The function calculates standard and terminal jack-knifed indices I and W 
+#' [see Miranda-Esquivel 2016], along with Posadas et al. 2001 modifications.
+#' 
+#' @param tree is a single tree with n terminals, an ape phylo object.
+#' 
+#' @param distrib species distributions in n areas, a data.frame
+#' 
+#' @param jtip is the number of terminals, an integer.
+#' 
+#' @param verbose
+#' 
+#' @param standard
+#' 
 #' @examples
 #' library(jrich)
 #' data(tree)
 #' data(distribution)
 #' ##
-#' ## Standarized by the sum of indices in the distribution
+#' Standarized by the sum of indices in the distribution
 #' Calculate.Index(tree=tree, distrib = distribution, verbose=TRUE, standard = "distribution")
 #' 
-#' ##
-#' ## Standarized by the sum of indices in the tree (as figure 1 in Miranda-Esquivel 2015)
+#' ## Standarized by the sum of indices in the tree (as figure 1 in Miranda-Esquivel 2016)
 #' Calculate.Index(tree=tree, distrib = distribution, verbose=TRUE, standard = "tree")
 #' 
 
@@ -83,6 +94,16 @@ Calculate.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose =
   
   	distrib <- distrib[match,]
   	distrib <- distrib[,names(distrib)!="species"]
+
+## Omar Leon reported
+## 2016 - 08 - 25
+## At this point, the numeric variables are treated as characters,
+## so the next operations can't be made, then I treat all numeric
+## variables as numeric, finally the calculations work.
+
+        for (i in 1:length(colnames(distrib))){
+           distrib[,i] <- as.numeric(distrib[,i])
+        }
   	
   	## here I have to include a possible solution to handle a single area 
   
