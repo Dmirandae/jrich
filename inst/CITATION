@@ -1,11 +1,19 @@
-year <- sub("-.*", "", meta$Date)
-note <- sprintf("R package version %s", meta$Version)
+citHeader("To cite jrich in a publication use:")
 
-bibentry(bibtype = "inBook",
-         title = "Biodiversity Conservation and Phylogenetic Systematics.",
-         chapter = "Support in Area Prioritization using phylogenetic information.",
-         author = (person("Daniel R., Miranda-Esquivel")),
-         publisher = "Springer",
-         editor = (person("Roselli Pellens")),
-         year = 2015,
-         pages = 001-100)
+citEntry(entry="InBook",
+	title = "Biodiversity Conservation and Phylogenetic Systematics: Preserving our evolutionary heritage in an extinction crisis",
+	    editor = personList(as.person("R. Pellens"),as.person("P. Grandcolas")),
+         author = personList(as.person("D.R. Miranda-Esquivel")),
+          chapter = "Support in Area Prioritization Using Phylogenetic Information",
+           publisher = "Springer International Publishing",
+		year = "2016",
+         pages = "219--235",
+                  doi = "10.1007/978-3-319-22461-9_11",
+         isbn = "978-3-319-22461-9",
+         url = "http://dx.doi.org/10.1007/978-3-319-22461-9_11",
+
+        textVersion = "Miranda-Esquivel, D.R. 2016. Support in Area Prioritization Using Phylogenetic Information. 
+        in: Pellens, R and Grandcolas, P. Biodiversity Conservation and Phylogenetic Systematics: 
+        Preserving our evolutionary heritage in an extinction crisis. pages 219-235. Springer.")
+
+citFooter("To cite the version number, use 'packageVersion(\"jrich\")'.")
