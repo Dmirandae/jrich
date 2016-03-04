@@ -18,17 +18,6 @@
 #'   plot(newTree)
 #'   
 #'
-#' @rdname Ancestor of a node
-#'
-#' @description Returns the ancestor of that node
-#' 
-#' @param tree is a single tree with n terminals.
-#' 
-#' @param node is an integer, representing the node in APE notation
-#'
-#'@return node.Matrix
-#'
-#'
 #'
 #'@author Miranda-Esquivel Daniel R.
 #'

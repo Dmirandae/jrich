@@ -4,9 +4,9 @@
 #' @description You input two tables with indices 
 #' and it function returns a single table with the sum.
 #' 
-#' @param indices1
+#' @param indices1 a table of indices values.
 #' 
-#' @param indices2
+#' @param indices2 a table of indices values.
 #' 
 #' @return a single table with the sum of the two indices.
 #' 

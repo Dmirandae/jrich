@@ -2,19 +2,19 @@
 % Please edit documentation in R/Rank.Indices.R
 \name{Rank.Indices}
 \alias{Rank.Indices}
-\title{Rank indices according to the areas' absolute position.}
+\title{Rank indices}
 \usage{
 Rank.Indices(index.Value = index.Value)
 }
 \arguments{
-\item{index.value}{enter the table with these values.}
+\item{index.Value}{a table with indices values.}
 }
 \value{
 a table with the decreasing order of the areas
 It presents the ties alphabetically
 }
 \description{
-If the index value is empty, the function assigns a dummy position "X0X"
+Renk indices according to the areas' absolute position. If the index value is empty, the function assigns a dummy position "X0X"
 }
 \author{
 Miranda-Esquivel Daniel R.

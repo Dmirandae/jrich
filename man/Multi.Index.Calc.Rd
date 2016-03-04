@@ -7,7 +7,7 @@
 Multi.Index.Calc(MultiData = MultiData, jtip = 0, jtopol = 0)
 }
 \arguments{
-\item{MultiData}{}
+\item{MultiData}{is the list of Trees and distributions to evaluate, a list object.}
 
 \item{jtip}{is the number of terminals, an integer.}
 

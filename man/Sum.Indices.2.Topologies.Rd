@@ -7,9 +7,9 @@
 Sum.Indices.2.Topologies(indices1 = indices1, indices2 = indices2)
 }
 \arguments{
-\item{indices1}{}
+\item{indices1}{a table of indices values.}
 
-\item{indices2}{}
+\item{indices2}{a table of indices values.}
 }
 \value{
 a single table with the sum of the two indices.

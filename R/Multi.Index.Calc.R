@@ -4,7 +4,7 @@
 #' @description The function calculates the indices values for a MultiData list 
 #' one time. 
 #'
-#' @param MultiData
+#' @param MultiData is the list of Trees and distributions to evaluate, a list object.
 #'
 #' @param jtip is the number of terminals, an integer.
 #'

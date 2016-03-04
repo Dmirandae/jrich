@@ -1,9 +1,9 @@
 #'
-#' @title Rank indices according to the areas' absolute position.
+#' @title Rank indices 
 #' 
-#' @description If the index value is empty, the function assigns a dummy position "X0X"
+#' @description Renk indices according to the areas' absolute position. If the index value is empty, the function assigns a dummy position "X0X"
 #'
-#' @param index.value enter the table with these values.
+#' @param index.Value a table with indices values.
 #' 
 #' @return a table with the decreasing order of the areas
 #' It presents the ties alphabetically 

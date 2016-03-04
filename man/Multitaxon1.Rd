@@ -3,15 +3,13 @@
 \docType{data}
 \name{Multitaxon1}
 \alias{Multitaxon1}
-\title{Multitaxon list}
-\format{A list with two objects}
+\title{Multitaxon example}
+\format{A list with two objects, each with an APE object, class phylo and the distribution of the terminals.}
 \usage{
 Multitaxon1
 }
 \description{
-A list with two objects:
-MultiTaxon1[[1]]: A tree and its distribution for taxon 1
-MultiTaxon1[[2]]: A tree and its distribution for taxon 2
+A multitaxon example with two hypothetical taxa / distributions
 }
 \author{
 Miranda-Esquivel Daniel R.

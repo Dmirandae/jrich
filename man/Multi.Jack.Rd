@@ -7,9 +7,9 @@
 Multi.Jack(MultiData = MultiData, times = 100, jtip = 0, jtopol = 0)
 }
 \arguments{
-\item{MultiData}{}
+\item{MultiData}{is the list of Trees and distributions to evaluate, a list object.}
 
-\item{times}{}
+\item{times}{in the number of times to repeat the process, an integer.}
 
 \item{jtip}{is the number of terminals, an integer.}
 

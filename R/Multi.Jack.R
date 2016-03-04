@@ -4,9 +4,9 @@
 #' @description
 #' The function calculates the indices values for a MultiData list  m (=replicates) times 
 #'
-#' @param MultiData
+#' @param  MultiData is the list of Trees and distributions to evaluate, a list object.
 #' 
-#' @param times
+#' @param times in the number of times to repeat the process, an integer.
 #'
 #' @param jtip is the number of terminals, an integer.
 #'

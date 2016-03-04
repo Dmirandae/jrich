@@ -28,9 +28,8 @@
 
 
 
-Best.Index <-
-function (tree = tree, distrib = distrib, jtip = jtip,
-          replicates = replicates, success = (c(1:3)) ) {
+Best.Index <- function (tree = phyloTree , distrib = distribution, jtip = deleteXTips,
+          replicates = NumberReplicates, success = (c(1:3)) ) {
           
   initial.Ranking <- Rank.Indices(Calculate.Index(tree = tree,distrib = distrib))
   

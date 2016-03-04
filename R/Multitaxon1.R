@@ -1,20 +1,16 @@
-#' 
+#'
 #' @title
-#' Multitaxon list
-#'
+#' Multitaxon example
+#' 
 #' @description
-#' A list with two objects:
-#' MultiTaxon1[[1]]: A tree and its distribution for taxon 1
-#' MultiTaxon1[[2]]: A tree and its distribution for taxon 2
-#'
-#' @format A list with two objects
+#' A multitaxon example with two hypothetical taxa / distributions
+#' 
+#' @format A list with two objects, each with an APE object, class phylo and the distribution of the terminals. 
 #'
 #'
 #'
 #'@author Miranda-Esquivel Daniel R.
 #'
 #'
-
-
 
 "Multitaxon1"

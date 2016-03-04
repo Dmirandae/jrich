@@ -14,30 +14,25 @@ Calculate.Index(tree = tree, distrib = distrib, jtip = 0,
 
 \item{jtip}{is the number of terminals, an integer.}
 
-\item{verbose}{}
+\item{verbose}{Boolean. If TRUE, the output reports the number of deleted terminals/topologies.}
 
-\item{standard}{}
+\item{standard}{"distribution" or "tree" to standarize by the 
+by the sum of indices in the distribution or  the sum of indices in the tree}
 }
 \description{
 The funtion calculates standard and terminal jack-knifed indices I and W 
-[see Miranda-Esquivel 2015], along with Posadas et al. 2001 modifications.
+[see Miranda-Esquivel 2016], along with Posadas et al. 2001 modifications.
 }
 \examples{
 library(jrich)
 data(tree)
 data(distribution)
-##
-Standarized by the sum of indices in the distribution
+## Standarized by the sum of indices in the distribution
 Calculate.Index(tree=tree, distrib = distribution, verbose=TRUE, standard = "distribution")
 
-## Standarized by the sum of indices in the tree (as figure 1 in Miranda-Esquivel 2015)
+## Standarized by the sum of indices in the tree (as figure 1 in Miranda-Esquivel 2016)
 Calculate.Index(tree=tree, distrib = distribution, verbose=TRUE, standard = "tree")
 
-
-Indices values and Jack-knife indices for a single topology.
-
-The funtion calculates standard and terminal jack-knifed indices I and W 
-[see Miranda-Esquivel 2015], along with Posadas et al. 2001 modifications.
 
 }
 \author{

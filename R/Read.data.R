@@ -1,11 +1,11 @@
 #'
-#' @title Read distributions as a csv.
+#' @title Read distributions
 #'
 #' @description Read distributions as a csv with two columns species and area
 #'
-#' @param data.file archivo csv de entrada.
+#' @param data.File a csv file to read
 #'   
-#'
+#' @return a data.frame object with the distribution by species 
 #'
 #'@author Miranda-Esquivel Daniel R.
 #'
