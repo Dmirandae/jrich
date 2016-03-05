@@ -1,0 +1,498 @@
+---
+title: "A jrich worked example"
+author: "D.R. Miranda Esquivel"
+date: "29/02/2016"
+output: pdf_document
+---
+
+
+These functions calculate the taxonomic measures presented in Miranda-Esquivel (2016). The package introduces Jack-knife resampling in evolutionary distinctiveness prioritization analysis, as a way to evaluate the support of the ranking in area prioritization, and the persistence of a given area in a conservation analysis.
+
+For further information, you could read http://link.springer.com/chapter/10.1007/978-3-319-22461-9_11
+
+
+
+> ###  **1.** An example with a single topology and distribution to reproduce Figure 1 in Miranda-Esquivel (2016)  
+
+First of all, we remove everything from the R environment.
+
+```{r}
+#
+rm(list=ls())
+
+```
+
+And close the graphic devices, if there is any.
+
+```{r}
+#
+if (dev.cur()!=1){dev.off()}
+
+```
+
+Now, we get the latest version of the library, from GitHub.
+
+```{r,eval=FALSE}
+
+#library("devtools")
+
+#install_github("Dmirandae/jrich")
+
+```
+
+We load the library before proceeding.
+
+```{r}
+
+library(jrich)
+
+```
+
+ans set working directory to the R Data (make sure you have changed it to your own directory).
+
+```{r}
+
+# setwd("./myData/")
+
+
+```
+
+Now, we can read a tree from `figure1.tre`, which is written in Newick format or we can use directly the tree from the data file.
+
+
+To read a file form a file use:
+
+```{r, eval=FALSE}
+
+
+tree.figure1 <- read.tree ("yourTree.tre")
+
+```
+
+Or, upload the data set, using the `data` funtion.
+
+```{r}
+
+ data(tree)
+
+```
+
+We can plot the tree.
+
+```{r}
+
+plot(tree, main= "Figure 1. Area Cladogram")
+
+```
+
+We can also read distributions using the species per area format. The distributions could be a csv file with several features: Each line has a species name and an area, and multiple areas for the same species means a widespread taxon in multiple lines.
+
+The following function creates a data frame for the species distributions.
+
+```{r, eval=FALSE}
+
+distrib.figure1 <- Read.Data("figure1.csv")
+
+head(distrib.figure1)
+
+```
+
+
+Also, we could read the example distribution.
+
+```{r}
+
+data(distribution)
+
+```
+
+
+
+We run the initial Index calculation, with a verbose output.
+
+```{r}
+library(jrich)
+
+initial.Values <- Calculate.Index(tree=tree, distrib = distribution, verbose=T)
+
+initial.Values 
+
+```
+
+Note that the figures for __Is/Ws__ indices here are different from Figure 1 in Miranda-Esquivel 2016, as here are re-scaled to sum 1, but the proportions are exactly the same.
+
+To obtain the same figures for __Is/Ws__ indices as in Figure 1, we must use this code: 
+
+```{r}
+
+figure1.Values <-  Calculate.Index(tree=tree, distrib = distribution, verbose=F, standard = "tree")
+
+figure1.Values
+
+all.equal(initial.Values,figure1.Values)
+
+```
+
+**1.** Correlations between values
+
+Plot the initial Values for the index that "explains" the most with this line:
+
+```{r}
+
+correlations <- cor(initial.Values[,2:10],initial.Values[,2:10])
+
+```
+
+Do not forget using the following code to avoid the "autocorrelation".
+
+```{r}
+
+diag(correlations) <- 0.0
+
+```
+
+Now we can determine the 'Best' descriptor:
+
+```{r}
+
+best.Index <- which.max(apply(correlations,2,sum))
+
+best.Index
+
+```
+
+With the following instruction we can get the name of index that displays the highest value,
+and the row of the column __rich__ in which the object is found. 
+
+Keep in mind that richness in not a good predictor for all indices. 
+
+```{r}
+
+which(abs(correlations[,"rich"])==max(abs(correlations[,"rich"])))
+
+```
+ 
+To plot aesthetic graphics, load the library `ggplot2`.
+ 
+```{r}
+
+library(ggplot2)
+
+```
+
+**2.** The index that "explains the most", without resampling is:
+
+```{r}
+
+best.Index <-   which.max(apply(correlations,2,sum))
+
+best.Index
+
+qplot(initial.Values$area,initial.Values[,names(best.Index)], xlab = "Areas", 
+      ylab =paste(names(best.Index)," values"), main = paste("Figure 2. Values of the most informative index: ",names(best.Index)," Index"))
+
+```
+
+In this example, Areas __A / F / G / H__ have the same ranking, as area __A__ harbors species __I__, while areas __F / G / H__ have the highest absolute richness.
+
+We run the analysis with a single Jackknife replicate with a jtip value of 0.5. 
+
+```{r}
+
+jack.Values <-  Calculate.Index(tree=tree, distrib = distribution,jtip = 0.5)
+
+```
+
+The absolute difference between these two outputs can be computed with this instruction:
+
+```{r}
+
+all.equal(initial.Values, jack.Values)
+
+```
+
+**3.** But a single replicate is not interesting, therefore we can repeat the process 100 times, using two approaches:
+
+  + **3.1 **Jackknifing with a jtip value of 0.5, 100 replicates, using the `Calculate.Index` function.
+    
+```{r}
+
+jack.Ranking.100 <- list()
+for (i in 1:100){
+  ## if you want to get the output number replicate, uncomment this line:
+  ##print(paste("replicate #",i), )
+  
+  jack.Ranking.100[[i]] <-  as.data.frame(Rank.Indices(Calculate.Index(tree=tree, distrib = distribution, verbose=FALSE,jtip = 0.5)))
+}
+
+```
+
++ **3.2 **Comparing the whole ranking for the best index, 100 times.
+
+```{r}
+
+initial.Ranking <-  as.data.frame(Rank.Indices(initial.Values))
+
+jack.Ranking.100.comparison <- NULL
+
+for (i in 1:100){
+  
+  if(!all(jack.Ranking.100[[i]][,best.Index] == "X0X")){
+    jack.Ranking.100.comparison[i] <- all.equal(initial.Ranking[,best.Index], 
+                                                  jack.Ranking.100[[i]][,best.Index])  
+  }else jack.Ranking.100.comparison[i] <- 0
+}
+
+```
+
+Get the number of hits or the extent of the Jackknife replicate to recover the initial ranking:
+
+```{r}
+
+length(which(jack.Ranking.100.comparison==TRUE))
+
+```
+
+To estimate the error, we use this code:
+
+```{r}
+
+length(which(as.data.frame(jack.Ranking.100.comparison)!=TRUE))
+
+```
+
+These two figures indicate that the best index is not __I__. As it is also important to estimate the error, we can use the following code to compute it.
+
+```{r}
+
+jack.Mismatch <- jack.Ranking.100.comparison[jack.Ranking.100.comparison!=TRUE]
+
+count.Jack.Mismatch <- gsub(" string mismatches","",jack.Mismatch)
+
+count.Jack.Mismatch <- as.numeric(count.Jack.Mismatch) 
+
+```
+
+Plot the distribution of the error, not so bell-shaped.
+
+```{r}
+
+hist(sort(count.Jack.Mismatch,na.last = NA), main = "Figure 3. Histogram of Error Distribution", xlab= "Jack Mistmatch count")
+
+```
+
+**4.** A wrap to theprevious function, and evaluating the number of times we recovered 1/2/3 position in the ranking.
+
+Note that `Calculate.Index` recovers the index values while `Best.Index` recovers the ranking comparison.
+
+```{r}
+
+jack.figure1.jtip05.100replicates <- Best.Index(tree=tree, distrib = distribution, jtip = 0.5, replicates = 50, success = c(1:2))
+
+jack.figure1.jtip05.100replicates
+
+best.Index = names(jack.figure1.jtip05.100replicates)[c(which(jack.figure1.jtip05.100replicates == max(jack.figure1.jtip05.100replicates)))]
+```
+
+__W / Ws__ explains better than __I__, as they have a Jackknife value. In this context we can plot __Ws__.
+
+```{r}
+for (i in 1:length(best.Index)){
+
+print(best.Index[i])
+
+print(qplot(initial.Values$area,initial.Values[,best.Index[i]], xlab = "Areas", 
+      ylab =paste(best.Index[i]," values"), main = paste("Figure 4. ",best.Index[i]," Index")))
+}
+```
+
+As it is shown in __Figure 4.__, areas __F/G/H__ have a higher value as they have higher richness, but even so, the support is relatively low.
+
+> ###  **2.** An example with two topologies and distributions  
+
+For this example, We will work with a tree and a distribution for an real taxon: _Puranius_ (These two files could be found in in the data directory). 
+
+```{r, eval=FALSE}
+
+tree.Puranius <- read.tree ("puranius.tre")
+
+distrib.Puranius <- Read.Data ("puranius.csv.gz")
+
+```
+
+Now we will assign a list to the object `data.Puranius` in order to join the tree and the distribution, which could certainly be made with a function as well. However, I prefer this approach. 
+
+```{r, eval=FALSE}
+
+data.Puranius  <- list()
+
+data.Puranius[[1]] <- tree.Puranius 
+
+data.Puranius[[2]] <- distrib.Puranius
+
+head(data.Puranius)
+
+```
+
+We will proceed just as we did for the first Taxon, thence we got a tree and a distribution for another Taxon: _Janus_.
+
+```{r, eval=FALSE}
+
+tree.Janus <- read.tree ("Janus.tre")
+
+distrib.Janus <- Read.Data("Janus.csv.gz")
+
+data.Janus  <- list()
+
+data.Janus[[1]] <- tree.Janus
+
+data.Janus[[2]] <- distrib.Janus
+
+data.Janus
+```
+
+The following code creates a list to handle multiple datasets.
+In this case, the list `Multitaxon1` contains two objects.
+
+```{r, eval=FALSE}
+Multitaxon1 <- list()
+
+Multitaxon1[[1]] <- data.Janus
+
+Multitaxon1[[2]] <- data.Puranius
+
+```
+
+The function `Multi.Index.Calc` calculates indices values for a MultiData list. For this case, it computes the Initial ranking for `Multitaxon1` with default values. This action is performed just once.
+
+```{r}
+
+data(Multitaxon1)
+
+initial.Values.Multi <-  Multi.Index.Calc(Multitaxon1)
+
+```
+
+Before plotting the initial Values for the Index that explains the most, make sure that the library `ggplot2` is loaded.
+
+```{r}
+library(ggplot2)
+```
+
+**1.** Correlations between values
+
+Plotting as example, the index value that explains the most is:
+
+```{r}
+correlations.Multi <-  cor(initial.Values.Multi[,2:10], initial.Values.Multi[,2:10])
+```
+
+To avoid the highest "autocorrelation", use this line:
+
+```{r}
+diag(correlations.Multi) <- 0.0
+```
+
+In case we want to know the index that explains the most, use this code:
+
+```{r}
+best.Index.Multi <-   which.max(apply(correlations.Multi,2,sum))
+
+qplot(initial.Values.Multi$area,initial.Values.Multi[,names(best.Index.Multi)], xlab = "Areas", ylab =names(best.Index.Multi), main = "Figure 5. Values of the Index that explains the most per area")
+```
+
+> **2.** A  delete experiment: Prob jtip jtopol 0.5 
+
+```{r}
+jack.Multi <-  Multi.Index.Calc(Multitaxon1,jtip = 0.5,jtopol = 0.5) 
+```
+
+See that the `jtopol` and `jtip` present the deleted proportions, and the two data frames are different.
+
+```{r}
+all.equal(jack.Multi,initial.Values.Multi)
+
+vector <-   which.max(apply(correlations,2,sum))
+```
+
+**3.** Jack Ranking Multitaxon 100 times
+
+This operation computes the index values and returns a data matrix. Diverse from the first method, it allows to perform this operation 100 times. The number of replicates can be easily modified, by changing the rank in for `(i in 1:100)`.
+
+```{r}
+
+jack.Ranking.100 <- list()
+
+for (i in 1:100){
+  print(paste("replicate #",i))
+  jack.Ranking.100[[i]] <-  as.data.frame(Rank.Indices(Multi.Index.Calc(Multitaxon1,
+  jtip = 0.5,jtopol = 0.5)))
+}
+
+```
+
+We can get the ranking in the first run. It is only necessary to run this line:
+
+```{r}
+
+jack.Ranking.100[[1]][,vector]
+
+```
+
+**4.** Convert the initial values to a ranking
+
+The initial ranking for Multitaxon is assigned as follows:
+
+```{r}
+initial.Ranking <-  as.data.frame(Rank.Indices(Multi.Index.Calc(Multitaxon1)))
+
+
+initial.Ranking[,vector]
+```
+
+**5.** Compare the whole ranking for the best index, 100 times.
+
+```{r}
+
+jack.Ranking.100.comparison <- NULL
+
+for (i in 1:100){
+  jack.Ranking.100.comparison[i] <- all.equal(initial.Ranking[,vector], 
+                                              jack.Ranking.100[[i]][,vector])
+}
+
+```
+
+Compute the number of hits or the Jackknife replicate ability to recover the initial ranking:
+
+```{r}
+length(which(jack.Ranking.100.comparison==TRUE))
+```
+
+As in the first example, get an estimation of the error.
+
+```{r}
+
+length(which(as.data.frame(jack.Ranking.100.comparison)!=TRUE))
+
+```
+
+And with this instruction we can identify the type of error.
+
+```{r}
+
+jack.Mismatch <- jack.Ranking.100.comparison[jack.Ranking.100.comparison!=TRUE]
+
+count.Jack.Mismatch <- gsub(" string mismatches","",jack.Mismatch)
+
+count.Jack.Mismatch <- as.numeric(count.Jack.Mismatch) 
+
+```
+
+This code computes the distribution of the error, which will rather be bell shaped.
+
+```{r}
+
+hist(sort(count.Jack.Mismatch), main="Figure 6. Histogram of Error Distribution",  xlab= "Jack Mistmatch count")
+
+```

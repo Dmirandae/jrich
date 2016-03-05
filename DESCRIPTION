@@ -1,7 +1,7 @@
 Package: jrich
 Version: 0.60-35
 Date: 2016-02-29
-Title: Jack-Knife Support for I and W Indices
+Title: Jack-Knife Support for Evolutionary Distinctiveness Indices I and W
 Author: Daniel R. Miranda-Esquivel
 Maintainer: Daniel R. Miranda-Esquivel <dmiranda@uis.edu.co>
 Depends:
@@ -12,7 +12,7 @@ Description: To link phylogeny and conservation, evolutionary taxonomic distinct
    of the areas to modifications in the data used in the analysis. 
    The jack-knife resampling approach could evaluate the effect of modifications in the terminals of phylogenies included or excluded in 
    the analysis and therefore quantify the persistence of an area or areas in the prioritization ranking.
-   The algorithm is described in: Miranda-Esquivel, D (2016) <DOI:10.1007/978-3-319-22461-9_11>
+   The algorithm is described in: Miranda-Esquivel, D (2016) <DOI:10.1007/978-3-319-22461-9_11>.
 License: GPL-3
 URL: https://github.com/Dmirandae/jrich
 BugReports: https://github.com/Dmirandae/jrich/issues
