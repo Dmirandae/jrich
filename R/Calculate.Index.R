@@ -8,7 +8,7 @@
 #' 
 #' @param tree is a single tree with n terminals, an ape phylo object.
 #' 
-#' @param distrib species distributions in n areas, a data.frame
+#' @param distribution species distributions in n areas, a data.frame
 #' 
 #' @param jtip is the number of terminals, an integer.
 #' 
@@ -22,10 +22,10 @@
 #' data(tree)
 #' data(distribution)
 #' ## Standarized by the sum of indices in the distribution
-#' Calculate.Index(tree=tree, distrib = distribution, verbose=TRUE, standard = "distribution")
+#' Calculate.Index(tree=tree, distribution = distribution, verbose=TRUE, standard = "distribution")
 #' 
 #' ## Standarized by the sum of indices in the tree (as figure 1 in Miranda-Esquivel 2016)
-#' Calculate.Index(tree=tree, distrib = distribution, verbose=TRUE, standard = "tree")
+#' Calculate.Index(tree=tree, distribution = distribution, verbose=TRUE, standard = "tree")
 #' 
 #'
 #'@author Miranda-Esquivel Daniel R.
@@ -36,18 +36,18 @@
 
 
 
-Calculate.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose = TRUE, standard = "distribution") {
+Calculate.Index <- function (tree = tree, distribution = distribution, jtip = 0, verbose = TRUE, standard = "distribution") {
 
   ## Errors on trees / distributions
   ## names and numbers
   
-    if (names(distrib)[1]=="especie"){
-    names(distrib)[1] <- "species"
+    if (names(distribution)[1]=="especie"){
+    names(distribution)[1] <- "species"
     }
   
-    if (length(tree$tip.label) == length(distrib$species)){
+    if (length(tree$tip.label) == length(distribution$species)){
         if (all(tree$tip.label[order(tree$tip.label)] == 
-                distrib$species[order(distrib$species)])){
+                distribution$species[order(distribution$species)])){
       }else{
           stop("distributions and tree(s) MUST have the same names for species and terminals")
          } 
@@ -56,11 +56,11 @@ Calculate.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose =
        }
    
 
-  	areas       <-  names(distrib)[-length(distrib)]
+  	areas       <-  names(distribution)[-length(distribution)]
   	
   	 if(length(areas) < 2) {warning("Endemism values could be missleading")}
   	
-  	especies    <-  distrib$species
+  	especies    <-  distribution$species
   
   	deleted.Terminals    <-  0
   
@@ -70,7 +70,7 @@ Calculate.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose =
         	#! print(paste("especie ",especies[i]," sera borrada",sep=""))
       	deleted.Terminals    <-  deleted.Terminals + 1
             
-        distrib[i,-(length(areas)+1)] <- rep (0,length(areas))
+        distribution[i,-(length(areas)+1)] <- rep (0,length(areas))
     	}    
   	} 
   
@@ -78,10 +78,10 @@ Calculate.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose =
     print(paste("Deleted",deleted.Terminals,"out of",length(especies),sep="  "))
   	}
   
-  	filas<-length(names(distrib))-1
+  	filas<-length(names(distribution))-1
   	resultados <-as.data.frame(matrix(data=0,nrow=filas,ncol=13))
   	names(resultados)<-c("area","I","Ie","Is","Ise","W","We","Ws","Wse","rich","endem","jtopol","jtip")
-  	resultados$area <- names(distrib)[names(distrib)!="species"]
+  	resultados$area <- names(distribution)[names(distribution)!="species"]
 
   
   ##
@@ -97,10 +97,10 @@ Calculate.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose =
   
   	names(I) <- names(W) <- tree$tip.label
   
-  	match <- match(tree$tip.label,distrib$species)
+  	match <- match(tree$tip.label,distribution$species)
   
-  	distrib <- distrib[match,]
-  	distrib <- distrib[,names(distrib)!="species"]
+  	distribution <- distribution[match,]
+  	distribution <- distribution[,names(distribution)!="species"]
 
 ## Omar Leon reported
 ## 2016 - 08 - 25
@@ -108,18 +108,18 @@ Calculate.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose =
 ## so the next operations can't be made, then I treat all numeric
 ## variables as numeric, finally the calculations work.
 
-        for (i in 1:length(colnames(distrib))){
-           distrib[,i] <- as.numeric(distrib[,i])
+        for (i in 1:length(colnames(distribution))){
+           distribution[,i] <- as.numeric(distribution[,i])
         }
   	
   	## here I have to include a possible solution to handle a single area 
   
-    resultados$rich <-  apply(as.matrix(distrib),2,sum)
+    resultados$rich <-  apply(as.matrix(distribution),2,sum)
   
   
-  endemicSpecies       <-   apply(as.matrix(distrib),1,sum)
+  endemicSpecies       <-   apply(as.matrix(distribution),1,sum)
   endemicSpecies[which(endemicSpecies != 1)] = 0
-  endemicityMatrix     <-  endemicSpecies*distrib
+  endemicityMatrix     <-  endemicSpecies*distribution
   sumEndemicityMatrix  <-  apply(as.matrix(endemicityMatrix),2,sum) 
   resultados$endem     <-  resultados$rich*sumEndemicityMatrix
   
@@ -127,8 +127,8 @@ Calculate.Index <- function (tree = tree, distrib = distrib, jtip = 0, verbose =
   #    resultados$endem=resultados$rich
   #    }
   
-  	indiceI.areas <- I*distrib
-  	indiceW.areas <- W*distrib
+  	indiceI.areas <- I*distribution
+  	indiceW.areas <- W*distribution
   
 
   	resultados$I <-  apply(as.matrix(indiceI.areas),2,sum)

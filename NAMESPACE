@@ -1,2 +1,4 @@
 import(ape)
+importFrom("stats", "runif")
+importFrom("utils", "read.csv")
 exportPattern("^[^\\.]")

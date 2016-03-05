@@ -4,13 +4,13 @@
 \alias{Calculate.Index}
 \title{Indices values and Jack-knife indices for a single topology.}
 \usage{
-Calculate.Index(tree = tree, distrib = distrib, jtip = 0,
+Calculate.Index(tree = tree, distribution = distribution, jtip = 0,
   verbose = TRUE, standard = "distribution")
 }
 \arguments{
 \item{tree}{is a single tree with n terminals, an ape phylo object.}
 
-\item{distrib}{species distributions in n areas, a data.frame}
+\item{distribution}{species distributions in n areas, a data.frame}
 
 \item{jtip}{is the number of terminals, an integer.}
 
@@ -28,10 +28,10 @@ library(jrich)
 data(tree)
 data(distribution)
 ## Standarized by the sum of indices in the distribution
-Calculate.Index(tree=tree, distrib = distribution, verbose=TRUE, standard = "distribution")
+Calculate.Index(tree=tree, distribution = distribution, verbose=TRUE, standard = "distribution")
 
 ## Standarized by the sum of indices in the tree (as figure 1 in Miranda-Esquivel 2016)
-Calculate.Index(tree=tree, distrib = distribution, verbose=TRUE, standard = "tree")
+Calculate.Index(tree=tree, distribution = distribution, verbose=TRUE, standard = "tree")
 
 
 }
