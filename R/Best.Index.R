@@ -11,7 +11,7 @@
 #'
 #' @param tree is a single tree with n terminals, an ape phylo object.
 #' 
-#' @param distrib species distributions in n areas, a data.frame
+#' @param distribution species distributions in n areas, a data.frame
 #' 
 #' @param jtip is the number of terminals to delete, an integer.
 #' 
@@ -33,10 +33,10 @@
 
 
 Best.Index <-
-function (tree = tree, distrib = distrib, jtip = jtip,
+function (tree = tree, distribution = distribution, jtip = jtip,
           replicates=replicates, success=c(success) ) {
           
-  rank <- Rank.Indices(Calculate.Index(tree = tree,distrib = distrib))
+  rank <- Rank.Indices(Calculate.Index(tree = tree,distribution = distribution))
   
   aciertos <- NULL
   
@@ -44,7 +44,7 @@ function (tree = tree, distrib = distrib, jtip = jtip,
     
   for (i in 1:replicates){
     
-    jack <- Rank.Indices(Calculate.Index(tree = tree, distrib = distrib, jtip))
+    jack <- Rank.Indices(Calculate.Index(tree = tree, distribution = distribution, jtip))
     
     if(all(rank$I[success] == jack$I[success])){
 		ok = 1}else{

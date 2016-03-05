@@ -29,10 +29,10 @@ function (MultiData = MultiData, jtip = 0, jtopol = 0) {
   for (i in 1:length(MultiData)){    
     if (jtopol > runif(1)){
       temp.Index.Value <- Calculate.Index(tree = MultiData[[i]][[1]],
-                                     distrib = MultiData[[i]][[2]], jtip)
+                                     distribution = MultiData[[i]][[2]], jtip)
     }else{
       temp.Index.Value <- Calculate.Index(tree = MultiData[[i]][[1]],
-                                     distrib = MultiData[[i]][[2]], 0)
+                                     distribution = MultiData[[i]][[2]], 0)
       temp.Index.Value$jtip <- abs(jtip)
     }
     

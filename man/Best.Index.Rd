@@ -5,13 +5,13 @@
 \title{Jack-knife indices in a single topology m times and evaluates a 
 success rule.}
 \usage{
-Best.Index(tree = tree, distrib = distrib, jtip = jtip,
+Best.Index(tree = tree, distribution = distribution, jtip = jtip,
   replicates = replicates, success = c(success))
 }
 \arguments{
 \item{tree}{is a single tree with n terminals, an ape phylo object.}
 
-\item{distrib}{species distributions in n areas, a data.frame}
+\item{distribution}{species distributions in n areas, a data.frame}
 
 \item{jtip}{is the number of terminals to delete, an integer.}
 
