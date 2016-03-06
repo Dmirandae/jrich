@@ -10,7 +10,7 @@
 #' 
 #' @param distribution species distributions in n areas, a data.frame
 #' 
-#' @param jtip is the number of terminals, an integer.
+#' @param jtip is the proportion of terminals to delete, real (range 0-1).
 #' 
 #' @param verbose Boolean. If TRUE, the output reports the number of deleted terminals/topologies. 
 #' 

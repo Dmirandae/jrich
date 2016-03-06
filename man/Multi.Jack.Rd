@@ -11,12 +11,22 @@ Multi.Jack(MultiData = MultiData, times = 100, jtip = 0, jtopol = 0)
 
 \item{times}{in the number of times to repeat the process, an integer.}
 
-\item{jtip}{is the number of terminals, an integer.}
+\item{jtip}{is the proportion of terminals to delete, real (range 0-1).}
 
-\item{jtopol}{is the number of topologies, an integer.}
+\item{jtopol}{is the proportion of topologies to delete, real (range 0-1).}
 }
 \description{
 The function calculates the indices values for a MultiData list  m (=replicates) times
+}
+\examples{
+ ## get the library
+ library(jrich)
+ 
+ ## load the data
+ data(Multitaxon1) 
+
+Multi.Jack(Multitaxon1, jtip=0.25)
+
 }
 \author{
 Miranda-Esquivel Daniel R.

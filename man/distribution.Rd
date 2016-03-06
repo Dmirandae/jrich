@@ -3,13 +3,13 @@
 \docType{data}
 \name{distribution}
 \alias{distribution}
-\title{Figure 1 distribution}
+\title{Distribution of five taxa.}
 \format{A data.frame object with eight areas (columns) and five species (rows)}
 \usage{
 distribution
 }
 \description{
-A data frame with five species distributions in eight areas.
+A data frame with five species distributions in eight areas, following Miranda-Esquivel (2016).
 }
 \author{
 Miranda-Esquivel Daniel R.

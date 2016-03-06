@@ -3,13 +3,14 @@
 \docType{data}
 \name{tree}
 \alias{tree}
-\title{Figure 1 tree}
+\title{A tree with five terminals}
 \format{An APE object, class phylo. A tree dataset with five terminals.}
 \usage{
 tree
 }
 \description{
-A tree with five terminals.
+A tree as an APE object with five terminals,
+following Miranda-Esquivel (2016).
 }
 \author{
 Miranda-Esquivel Daniel R.

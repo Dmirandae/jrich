@@ -6,12 +6,10 @@ Author: Daniel R. Miranda-Esquivel
 Maintainer: Daniel R. Miranda-Esquivel <dmiranda@uis.edu.co>
 Depends:
     ape
-Description: To link phylogeny and conservation, evolutionary taxonomic distinctiveness indices are a feasible way for defining a ranking 
-   of areas that takes into account the evolutionary history of each taxon that inhabits the area. 
-   As our information could be incomplete or even could be misleading, there must be a measure to evaluate the sensitivity of the ranking 
-   of the areas to modifications in the data used in the analysis. 
-   The jack-knife resampling approach could evaluate the effect of modifications in the terminals of phylogenies included or excluded in 
-   the analysis and therefore quantify the persistence of an area or areas in the prioritization ranking.
+Description: These functions calculate the taxonomic measures presented in Miranda-Esquivel (2016). 
+   The package introduces Jack-knife resampling in evolutionary distinctiveness prioritization analysis, 
+   as a way to evaluate the support of the ranking in area prioritization, and the persistence of a given area 
+   in a conservation analysis.
    The algorithm is described in: Miranda-Esquivel, D (2016) <DOI:10.1007/978-3-319-22461-9_11>.
 License: GPL-3
 URL: https://github.com/Dmirandae/jrich

@@ -19,8 +19,8 @@ Returns a vector with weights.
   library(jrich)
   data(tree)
   plot(tree)
-  indexw <- IndexW(tree)
-  newTree <- tree
+  indexw             <- IndexW(tree)
+  newTree            <- tree
   newTree$tip.label  <- indexw
   plot(newTree)
   

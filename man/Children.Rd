@@ -17,6 +17,13 @@ The children nodes of the internal node; in most cases, two integers.
 \description{
 Get the children of a node in a tree.
 }
+\examples{
+ library(jrich)
+ data(tree)
+
+Children(tree,7)
+
+}
 \author{
 Miranda-Esquivel Daniel R.
 }

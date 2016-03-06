@@ -12,7 +12,7 @@ Calculate.Index(tree = tree, distribution = distribution, jtip = 0,
 
 \item{distribution}{species distributions in n areas, a data.frame}
 
-\item{jtip}{is the number of terminals, an integer.}
+\item{jtip}{is the proportion of terminals to delete, real (range 0-1).}
 
 \item{verbose}{Boolean. If TRUE, the output reports the number of deleted terminals/topologies.}
 

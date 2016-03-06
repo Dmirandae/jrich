@@ -8,7 +8,15 @@
 #' @return a table with the decreasing order of the areas
 #' It presents the ties alphabetically 
 #' 
-#'
+#' @examples
+#'  ## get the library
+#'  library(jrich)
+#'  
+#'  ## load the data
+#'  data(tree) 
+#'  data(distribution) 
+#'  
+#' Rank.Indices(Calculate.Index(tree=tree, distrib = distribution, verbose=FALSE))
 #'
 #'@author Miranda-Esquivel Daniel R.
 #'

@@ -13,7 +13,7 @@ Best.Index(tree = tree, distribution = distribution, jtip = jtip,
 
 \item{distribution}{species distributions in n areas, a data.frame}
 
-\item{jtip}{is the number of terminals to delete, an integer.}
+\item{jtip}{is the proportion of terminals to delete, real (range 0-1).}
 
 \item{replicates}{is the number of replicates, an integer.}
 
@@ -24,13 +24,22 @@ The function returns the success that correspond to
 obtain the same ranking for X,Y positions, established as the vector
 success (by default success)).
 
-The function returns the success that correspond to  
+The function returns the success that corresponds to  
 obtain the same ranking for X,Y positions, established as the vector
 success (by default success))
 }
 \description{
 The function jack-knifes the terminals and
 calculates the indices value m (=replicates) times.
+}
+\examples{
+library(jrich)
+data(tree)
+data(distribution)
+
+Best.Index(tree = tree, distribution = distribution, jtip =0.5, replicates =10, success=1)
+
+
 }
 \author{
 Miranda-Esquivel Daniel R.

@@ -3,15 +3,16 @@
 \docType{data}
 \name{taxon1}
 \alias{taxon1}
-\title{Figure 1 tree and distribution}
+\title{A tree and the distribution of the taxa}
 \format{A list with two objects}
 \usage{
 taxon1
 }
 \description{
 A list with two objects:
-Taxon[[1]]: Figure 1 tree, an APE object with five terminals and
-Taxon[[2]]: A data frame with five species distributions in eight areas.
+Taxon[[1]]: A tree as an APE object with five terminals and
+Taxon[[2]]: A data frame with five species distributions in eight areas,
+following Miranda-Esquivel (2016).
 }
 \author{
 Miranda-Esquivel Daniel R.

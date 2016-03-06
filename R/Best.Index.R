@@ -13,16 +13,22 @@
 #' 
 #' @param distribution species distributions in n areas, a data.frame
 #' 
-#' @param jtip is the number of terminals to delete, an integer.
+#' @param jtip is the proportion of terminals to delete, real (range 0-1).
 #' 
 #' @param replicates is the number of replicates, an integer.
 #' 
 #' @param success the measure of the success, a vector.
 #' 
-#' @return The function returns the success that correspond to  
+#' @return The function returns the success that corresponds to  
 #' obtain the same ranking for X,Y positions, established as the vector
 #' success (by default success))
 #' 
+#' @examples
+#' library(jrich)
+#' data(tree)
+#' data(distribution)
+#'
+#' Best.Index(tree = tree, distribution = distribution, jtip =0.5, replicates =10, success=1)
 #'
 #'
 #'@author Miranda-Esquivel Daniel R.

@@ -8,13 +8,20 @@
 #' 
 #' @param times in the number of times to repeat the process, an integer.
 #'
-#' @param jtip is the number of terminals, an integer.
+#' @param jtip is the proportion of terminals to delete, real (range 0-1).
 #'
-#' @param jtopol is the number of topologies, an integer.
+#' @param jtopol is the proportion of topologies to delete, real (range 0-1).
 #'
 #' @returns the rankings
 #'
-#'
+#' @examples
+#'  ## get the library
+#'  library(jrich)
+#'  
+#'  ## load the data
+#'  data(Multitaxon1) 
+#' 
+#' Multi.Jack(Multitaxon1, jtip=0.25)
 #'
 #'@author Miranda-Esquivel Daniel R.
 #'

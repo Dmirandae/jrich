@@ -16,6 +16,17 @@ It presents the ties alphabetically
 \description{
 Renk indices according to the areas' absolute position. If the index value is empty, the function assigns a dummy position "X0X"
 }
+\examples{
+ ## get the library
+ library(jrich)
+ 
+ ## load the data
+ data(tree) 
+ data(distribution) 
+ 
+Rank.Indices(Calculate.Index(tree=tree, distrib = distribution, verbose=FALSE))
+
+}
 \author{
 Miranda-Esquivel Daniel R.
 }

@@ -9,9 +9,9 @@ Multi.Index.Calc(MultiData = MultiData, jtip = 0, jtopol = 0)
 \arguments{
 \item{MultiData}{is the list of Trees and distributions to evaluate, a list object.}
 
-\item{jtip}{is the number of terminals, an integer.}
+\item{jtip}{is the proportion of terminals to delete, real (range 0-1).}
 
-\item{jtopol}{is the number of topologies, an integer.}
+\item{jtopol}{is the proportion of topologies to delete, real (range 0-1).}
 }
 \value{
 Returns the indices values.
@@ -19,6 +19,16 @@ Returns the indices values.
 \description{
 The function calculates the indices values for a MultiData list 
 one time.
+}
+\examples{
+ ## get the library
+ library(jrich)
+ 
+ ## load the data
+ data(Multitaxon1) 
+
+ Multi.Index.Calc(Multitaxon1, jtip = 0, jtopol = 0)
+
 }
 \author{
 Miranda-Esquivel Daniel R.

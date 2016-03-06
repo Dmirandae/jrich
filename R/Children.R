@@ -10,6 +10,11 @@
 #' @return The children nodes of the internal node; in most cases, two integers.
 #'
 #'
+#' @examples
+#'  library(jrich)
+#'  data(tree)
+#'
+#' Children(tree,7)
 #'
 #'@author Miranda-Esquivel Daniel R.
 #'

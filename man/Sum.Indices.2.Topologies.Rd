@@ -18,6 +18,26 @@ a single table with the sum of the two indices.
 You input two tables with indices 
 and it function returns a single table with the sum.
 }
+\examples{
+
+ ## get the library
+ library(jrich)
+ 
+ ## load the data
+ data(Multitaxon1) 
+ 
+ ## calculate indices for two trees and their distributions
+ temp.Index.Value1 <- Calculate.Index(tree = Multitaxon1[[1]][[1]],
+                                      distribution = Multitaxon1[[1]][[2]],0)
+
+ temp.Index.Value2 <- Calculate.Index(tree = Multitaxon1[[2]][[1]],
+                                      distribution = Multitaxon1[[2]][[2]],0)
+ 
+ ## sum the indices values
+ Sum.Indices.2.Topologies(temp.Index.Value1, temp.Index.Value2)
+ 
+
+}
 \author{
 Miranda-Esquivel Daniel R.
 }
