@@ -3,7 +3,7 @@
 \docType{data}
 \name{Multitaxon1}
 \alias{Multitaxon1}
-\title{Multitaxon example}
+\title{Multitaxon example.}
 \format{A list with two objects, each with an APE object, class phylo and the distribution of the terminals.}
 \usage{
 Multitaxon1

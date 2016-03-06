@@ -2,7 +2,7 @@
 % Please edit documentation in R/Sum.indices.2.topologies.R
 \name{Sum.Indices.2.Topologies}
 \alias{Sum.Indices.2.Topologies}
-\title{Sums two tables with indices values}
+\title{Sums two tables with indices values.}
 \usage{
 Sum.Indices.2.Topologies(indices1 = indices1, indices2 = indices2)
 }

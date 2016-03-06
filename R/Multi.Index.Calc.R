@@ -1,5 +1,5 @@
 #'
-#' @title Jack-knife indices in n topologies one time
+#' @title Jack-knife indices in n topologies one time.
 #'
 #' @description The function calculates the indices values for a MultiData list 
 #' one time. 

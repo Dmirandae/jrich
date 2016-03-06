@@ -3,7 +3,7 @@
 \docType{data}
 \name{taxon1}
 \alias{taxon1}
-\title{A tree and the distribution of the taxa}
+\title{A tree and the distribution of the taxa.}
 \format{A list with two objects}
 \usage{
 taxon1

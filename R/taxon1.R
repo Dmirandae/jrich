@@ -1,6 +1,6 @@
 #'
 #' @title
-#' A tree and the distribution of the taxa
+#' A tree and the distribution of the taxa.
 #'
 #' @description
 #' A list with two objects:

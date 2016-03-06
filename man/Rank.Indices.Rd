@@ -2,7 +2,7 @@
 % Please edit documentation in R/Rank.Indices.R
 \name{Rank.Indices}
 \alias{Rank.Indices}
-\title{Rank indices}
+\title{Rank indices.}
 \usage{
 Rank.Indices(index.Value = index.Value)
 }

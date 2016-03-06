@@ -1,5 +1,5 @@
 #'
-#' @title W index value for a single topology
+#' @title W index value for a single topology.
 #'
 #' @description This function assigns the weight according to the ramification patterns 
 #' (see Van-Wright et al., 1981). 

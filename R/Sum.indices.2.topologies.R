@@ -1,5 +1,5 @@
 #'
-#' @title Sums two tables with indices values
+#' @title Sums two tables with indices values.
 #' 
 #' @description You input two tables with indices 
 #' and it function returns a single table with the sum.

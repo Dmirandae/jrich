@@ -1,5 +1,5 @@
 #'
-#' @title Rank indices 
+#' @title Rank indices. 
 #' 
 #' @description Renk indices according to the areas' absolute position. If the index value is empty, the function assigns a dummy position "X0X"
 #'

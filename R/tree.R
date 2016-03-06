@@ -1,6 +1,6 @@
 #'
 #' @title
-#' A tree with five terminals
+#' A tree with five terminals.
 #' 
 #' @description
 #' A tree as an APE object with five terminals,

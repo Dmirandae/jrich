@@ -1,6 +1,6 @@
 #'
 #' @title
-#' Multitaxon example
+#' Multitaxon example.
 #' 
 #' @description
 #' A multitaxon example with two hypothetical taxa / distributions

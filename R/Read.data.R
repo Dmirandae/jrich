@@ -1,5 +1,5 @@
 #'
-#' @title Read distributions
+#' @title Read distributions.
 #'
 #' @description Read distributions as a csv with two columns species and area
 #'

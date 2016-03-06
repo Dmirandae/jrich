@@ -3,7 +3,7 @@
 \docType{data}
 \name{tree}
 \alias{tree}
-\title{A tree with five terminals}
+\title{A tree with five terminals.}
 \format{An APE object, class phylo. A tree dataset with five terminals.}
 \usage{
 tree

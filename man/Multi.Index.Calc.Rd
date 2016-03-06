@@ -2,7 +2,7 @@
 % Please edit documentation in R/Multi.Index.Calc.R
 \name{Multi.Index.Calc}
 \alias{Multi.Index.Calc}
-\title{Jack-knife indices in n topologies one time}
+\title{Jack-knife indices in n topologies one time.}
 \usage{
 Multi.Index.Calc(MultiData = MultiData, jtip = 0, jtopol = 0)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/Read.data.R
 \name{Read.Data}
 \alias{Read.Data}
-\title{Read distributions}
+\title{Read distributions.}
 \usage{
 Read.Data(data.File)
 }

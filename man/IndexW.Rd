@@ -2,7 +2,7 @@
 % Please edit documentation in R/IndexW.R
 \name{IndexW}
 \alias{IndexW}
-\title{W index value for a single topology}
+\title{W index value for a single topology.}
 \usage{
 IndexW(tree = tree)
 }
