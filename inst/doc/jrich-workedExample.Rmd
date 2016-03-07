@@ -1,8 +1,8 @@
 ---
 title: "A jrich worked example"
 author: "D.R. Miranda Esquivel"
-date: "29/02/2016"
-output: html_document
+date: "06/03/2016"
+output: pdf_document
 ---
 
 
@@ -30,7 +30,7 @@ if (dev.cur()!=1){dev.off()}
 
 ```
 
-Now, we get the latest version of the library, from GitHub.
+Now, we cat get the stable version of the library from CRAN or the latest version from GitHub.
 
 ```{r,eval=FALSE}
 
@@ -38,7 +38,11 @@ Now, we get the latest version of the library, from GitHub.
 
 #install_github("Dmirandae/jrich")
 
+
+install.packages('jrich')
+
 ```
+
 
 We load the library before proceeding.
 
@@ -48,7 +52,7 @@ library(jrich)
 
 ```
 
-ans set working directory to the R Data (make sure you have changed it to your own directory).
+and set the working directory to the R Data (make sure you have changed it to your own directory).
 
 ```{r}
 
@@ -60,7 +64,7 @@ ans set working directory to the R Data (make sure you have changed it to your o
 Now, we can read a tree from `figure1.tre`, which is written in Newick format or we can use directly the tree from the data file.
 
 
-To read a file form a file use:
+To read the tree form a file use:
 
 ```{r, eval=FALSE}
 
@@ -98,7 +102,7 @@ head(distrib.figure1)
 ```
 
 
-Also, we could read the example distribution.
+Also, we could load the example distribution.
 
 ```{r}
 
