@@ -1,15 +1,14 @@
+---
+title: "jrich README"
+author: "D.R. Miranda Esquivel"
+date: "06/03/2016"
+---
 
 
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/jrich?color=ff69b4)](https://github.com/metacran/cranlogs.app)
 [![cran version](http://www.r-pkg.org/badges/version/jrich)](http://cran.rstudio.com/web/packages/jrich)
 
 
----
-title: "jrich README"
-author: "D.R. Miranda Esquivel"
-date: "06/03/2016"
-output: html_document
----
 
 These functions calculate the taxonomic measures presented in Miranda-Esquivel (2016). The package introduces Jack-knife resampling in evolutionary distinctiveness prioritization analysis, as a way to evaluate the support of the ranking in area prioritization, and the persistence of a given area in a conservation analysis.
 
