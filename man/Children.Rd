@@ -2,26 +2,27 @@
 % Please edit documentation in R/Children.R
 \name{Children}
 \alias{Children}
-\title{Children of a node.}
+\title{Children of an internal node.}
 \usage{
 Children(tree = tree, node = node)
 }
 \arguments{
 \item{tree}{is a single tree with n terminals, an ape phylo object.}
 
-\item{node}{representing the node in APE notation,is an integer.}
+\item{node}{representing the node in APE notation, an integer.}
 }
 \value{
 The children nodes of the internal node; in most cases, two integers.
 }
 \description{
-Get the children of a node in a tree.
+Get the children of an internal node in a tree.
 }
 \examples{
  library(jrich)
+ 
  data(tree)
 
-Children(tree,7)
+Children(tree,node=7)
 
 }
 \author{
