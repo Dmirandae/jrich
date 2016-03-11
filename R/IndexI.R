@@ -1,10 +1,10 @@
 #'
 #' @title I index value for a single topology.
 #'
-#' @description This function assigns the same weight to sister clades
-#' (see Van-Wright et al., 1981). The input tree is reordered in post order.
+#' @description This function assigns the same weight to sister clades [1].
+#' The input tree is reordered in post order.
 #' 
-#' @param tree is a single tree with n terminals, an ape phylo object.
+#' @param tree is a single tree with n terminals, a phylo object.
 #'
 #' @return Returns a vector with weights.
 #' 
@@ -16,14 +16,14 @@
 #'  newTree              <- tree
 #'  newTree$tip.label    <- indexi
 #'  plot(newTree)
-#'  
 #'
 #'
 #'@author Miranda-Esquivel Daniel R.
 #'
-#'
-
-
+#'@references
+#'[1] Van-Wright et al., 1991. What to Protect? Systematics and the Agony of Choice.
+#' Biological Conservation 55 (1991) 235-254 
+#' 
 
 
 
@@ -66,9 +66,6 @@ IndexI <- function(tree=tree) {
   
 	}
 
-
-
-	#
 
 	Weight.sister.tips <-
 	function (tree=tree, matriz=matriz) {
@@ -113,7 +110,6 @@ IndexI <- function(tree=tree) {
   
 	}
 
-
   
 #! pares de tips como 1
   matriz <- Weight.sister.tips(tree,matriz)
@@ -124,4 +120,6 @@ IndexI <- function(tree=tree) {
     #! con los nombres de las especies y sus pesos
   
   return(matriz)
+
 }
+

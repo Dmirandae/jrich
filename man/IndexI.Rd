@@ -7,14 +7,14 @@
 IndexI(tree = tree)
 }
 \arguments{
-\item{tree}{is a single tree with n terminals, an ape phylo object.}
+\item{tree}{is a single tree with n terminals, a phylo object.}
 }
 \value{
 Returns a vector with weights.
 }
 \description{
-This function assigns the same weight to sister clades
-(see Van-Wright et al., 1981). The input tree is reordered in post order.
+This function assigns the same weight to sister clades [1].
+The input tree is reordered in post order.
 }
 \examples{
  library(jrich)
@@ -24,11 +24,14 @@ This function assigns the same weight to sister clades
  newTree              <- tree
  newTree$tip.label    <- indexi
  plot(newTree)
- 
 
 
 }
 \author{
 Miranda-Esquivel Daniel R.
+}
+\references{
+[1] Van-Wright et al., 1991. What to Protect? Systematics and the Agony of Choice.
+Biological Conservation 55 (1991) 235-254
 }
 
