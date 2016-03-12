@@ -1,8 +1,6 @@
-#'
 #' @title W index value for a single topology.
 #'
-#' @description This function assigns the weight according to the ramification patterns 
-#' (see Van-Wright et al., 1981). 
+#' @description This function assigns the weights according to the ramification pattern [1]. 
 #' The input tree is reordered in post order.
 #' Returns a vector with weights.
 #' 
@@ -21,9 +19,10 @@
 #'
 #'@author Miranda-Esquivel Daniel R.
 #'
-#'
-
-
+#'#'@references
+#'[1] Van-Wright et al., 1991. What to Protect? Systematics and the Agony of Choice.
+#' Biological Conservation 55 (1991) 235-254 
+#' 
 
 
 
