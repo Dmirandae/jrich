@@ -10,23 +10,25 @@ Calculate.Index(tree = tree, distribution = distribution, jtip = 0,
 \arguments{
 \item{tree}{is a single tree with n terminals, an ape phylo object.}
 
-\item{distribution}{species distributions in n areas, a data.frame}
+\item{distribution}{species distributions in m areas, a data.frame}
 
 \item{jtip}{is the proportion of terminals to delete, real (range 0-1).}
 
 \item{verbose}{Boolean. If TRUE, the output reports the number of deleted terminals/topologies.}
 
 \item{standard}{"distribution" or "tree" to standarize by the 
-by the sum of indices in the distribution or  the sum of indices in the tree}
+by the sum of indices in the distribution or the sum of indices in the tree.}
 }
 \description{
 The funtion calculates standard and terminal jack-knifed indices I and W 
-[see Miranda-Esquivel 2016], along with Posadas et al. 2001 modifications.
+[see Miranda-Esquivel 2016], along with Posadas et al. (2001) modifications.
 }
 \examples{
 library(jrich)
+
 data(tree)
 data(distribution)
+
 ## Standarized by the sum of indices in the distribution
 Calculate.Index(tree=tree, distribution = distribution, verbose=TRUE, standard = "distribution")
 
